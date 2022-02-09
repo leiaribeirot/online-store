@@ -19,7 +19,7 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={ () => <Home { ...this.state } handleChange={ this.handleChange } /> }
+            render={ () => <Home { ...this.state } handleChange={ this.handleChange } updateAppState={ this.updateAppState } /> }
           />
         </Switch>
       </BrowserRouter>);
