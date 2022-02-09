@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Input from '../components/Input';
+import CategoriesSidebar from '../components/CategoriesSidebar';
 
 class Home extends Component {
   render() {
@@ -16,6 +17,7 @@ class Home extends Component {
           name="searchInput"
           onChange={ handleChange }
         />
+        <CategoriesSidebar { ...this.props } />
       </div>);
   }
 }

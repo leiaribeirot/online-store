@@ -5,10 +5,10 @@ class Input extends Component {
   render() {
     const { labelId, inputId, labelText, name, type, onChange } = this.props;
     return (
-      <label data-testId={ labelId } htmlFor={ name }>
+      <label data-testid={ labelId } htmlFor={ name }>
         {labelText}
         <input
-          data-testId={ inputId }
+          data-testid={ inputId }
           type={ type }
           name={ name }
           onChange={ onChange }
@@ -23,11 +23,12 @@ Input.propTypes = {
   labelText: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 };
 
 Input.defaultProps = {
   labelId: '',
   inputId: '',
+  onChange: () => {},
 };
 export default Input;
