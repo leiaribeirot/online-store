@@ -13,6 +13,7 @@ class CardList extends Component {
             key={ result.id }
             dataId="product"
             productName={ result.title }
+            imageId="product-detail-link"
             price={ result.price }
             src={ result.thumbnail }
             productId={ result.id }

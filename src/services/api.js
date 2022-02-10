@@ -11,3 +11,13 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   const productResponse = await productsQuery.json();
   return productResponse;
 }
+
+export async function fetchItem(productId) {
+  if (!productId) {
+    return new Error('You must provide an url');
+  }
+  const url = `https://api.mercadolibre.com/items/${productId}`;
+  const response = await fetch(url);
+  const results = await response.json();
+  return results;
+}

@@ -49,7 +49,15 @@ class App extends React.Component {
               />) }
           />
           <Route exact path="/CardCarrinho" component={ CardCarrinho } />
-          <Route path="/product-details/:productId" render={ (props) => <ProductDetails { ...this.props } /> } />
+          <Route
+            path="/product-details/:id"
+            render={ (props) => (
+              <ProductDetails
+                { ...props }
+                { ...this.state }
+                updateAppState={ this.updateAppState }
+              />) }
+          />
         </Switch>
       </BrowserRouter>);
   }
