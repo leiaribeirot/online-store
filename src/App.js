@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import CardCarrinho from './components/CardCarrinho';
 import { getProductsFromCategoryAndQuery } from './services/api';
+import ProductDetails from './pages/ProductDetails';
 
 class App extends React.Component {
   state = {
@@ -48,6 +49,15 @@ class App extends React.Component {
               />) }
           />
           <Route exact path="/CardCarrinho" component={ CardCarrinho } />
+          <Route
+            path="/product-details/:id"
+            render={ (props) => (
+              <ProductDetails
+                { ...props }
+                { ...this.state }
+                updateAppState={ this.updateAppState }
+              />) }
+          />
         </Switch>
       </BrowserRouter>);
   }
