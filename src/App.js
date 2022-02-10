@@ -14,7 +14,7 @@ class App extends React.Component {
   };
 
   handleClick = () => {
-    console.log('handleClick', this.state)
+    console.log('handleClick', this.state.searchInput)
   }
 
   handleOnKeyDown = (e) => {
@@ -35,6 +35,8 @@ class App extends React.Component {
                 { ...this.state }
                 handleChange={ this.handleChange }
                 updateAppState={ this.updateAppState }
+                handleClick={ this.handleClick }
+                handleOnKeyDown={ this.handleOnKeyDown }
               />) }
           />
           <Route exact path="/CardCarrinho" component={ CardCarrinho } />
