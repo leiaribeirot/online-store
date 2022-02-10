@@ -15,6 +15,7 @@ class CardList extends Component {
             productName={ result.title }
             price={ result.price }
             src={ result.thumbnail }
+            productId={ result.id }
           />))}
       </div>
     );
