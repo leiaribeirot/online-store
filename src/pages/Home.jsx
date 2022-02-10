@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Input from '../components/Input';
+import CategoriesSidebar from '../components/CategoriesSidebar';
 
 class Home extends Component {
   render() {
@@ -19,6 +20,7 @@ class Home extends Component {
         <Link to="/CardCarrinho" data-testid="shopping-cart-button">
           Carrinho de Compras
         </Link>
+        <CategoriesSidebar { ...this.props } />
       </div>
     );
   }
