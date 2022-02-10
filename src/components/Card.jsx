@@ -4,27 +4,26 @@ import { Link } from 'react-router-dom';
 
 class Card extends React.Component {
   render() {
-    const { dataId, text, src, alt, preco} = this.props;
+    const { dataId, productName, src, price } = this.props;
     return (
-      <div data-testid={dataId}>
+      <div data-testid={ dataId }>
         <h2>
-          { text }
+          { productName }
         </h2>
-        <Link to={}>
-          <img src={ src} alt={ alt }/>
+        <Link to="/">
+          <img src={ src } alt={ `Imagem do produto: ${productName}` } />
         </Link>
-        <span>{ preco }</span>
+        <span>{ price }</span>
       </div>
     );
   }
 }
 
 Card.propTypes = {
-  dataId: PropTypes.string,
-  text: PropTypes.string,
-  src: PropTypes.string,
-  alt: PropTypes.string,
-  preco: PropTypes.number,
-}
+  dataId: PropTypes.string.isRequired,
+  productName: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+};
 
 export default Card;

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Input from '../components/Input';
 import CategoriesSidebar from '../components/CategoriesSidebar';
+import CardList from '../components/CardList';
 
 class Home extends Component {
   render() {
@@ -30,6 +31,7 @@ class Home extends Component {
         <Link to="/CardCarrinho" data-testid="shopping-cart-button">
           Carrinho de Compras
         </Link>
+        <CardList { ...this.props } />
         <CategoriesSidebar { ...this.props } />
       </div>
     );
@@ -38,8 +40,8 @@ class Home extends Component {
 Home.propTypes = {
   searchInput: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
-  handleClick: PropTypes.func,
-  handleOnKeyDown: PropTypes.func,
+  handleClick: PropTypes.func.isRequired,
+  handleOnKeyDown: PropTypes.func.isRequired,
 };
 
 Home.defaultProps = {

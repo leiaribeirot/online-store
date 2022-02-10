@@ -3,8 +3,13 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import CardCarrinho from './components/CardCarrinho';
+import { getProductsFromCategoryAndQuery } from './services/api';
 
 class App extends React.Component {
+  state = {
+    searchInput: '',
+  }
+
   updateAppState = (entries, callbackFunction) => {
     this.setState({ ...entries }, () => callbackFunction);
   };
@@ -13,13 +18,16 @@ class App extends React.Component {
     this.setState({ [name]: value });
   };
 
-  handleClick = () => {
-    console.log('handleClick', this.state.searchInput)
+  handleClick = async () => {
+    const { searchInput } = this.state;
+    const queryResponse = await getProductsFromCategoryAndQuery('', searchInput);
+    const searchResults = queryResponse.results;
+    this.setState({ searchResults });
   }
 
   handleOnKeyDown = (e) => {
     if (e.key === 'Enter') {
-      console.log('handleOnKeyDown', this.state)
+      this.handleClick();
     }
   }
 
