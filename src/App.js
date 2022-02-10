@@ -11,7 +11,7 @@ class App extends React.Component {
   }
 
   updateAppState = (entries, callbackFunction) => {
-    this.setState({ ...entries }, () => callbackFunction);
+    this.setState({ ...entries }, callbackFunction);
   };
 
   handleChange = ({ target: { name, value } }) => {

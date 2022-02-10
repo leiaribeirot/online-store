@@ -10,15 +10,9 @@ class CategoriesSidebar extends Component {
     updateAppState({ categoriesArray });
   }
 
-  componentDidUpdate = (prevProps) => {
-    const { categoryId, handleClick } = this.props;
-    const { prevCategoryId } = prevProps;
-    if (prevCategoryId !== categoryId) { handleClick(); }
-  }
-
   onRadioButtonClick = (categoryId) => {
-    const { updateAppState } = this.props;
-    updateAppState({ categoryId });
+    const { updateAppState, handleClick } = this.props;
+    updateAppState({ categoryId }, handleClick);
   }
 
   render() {
@@ -46,13 +40,11 @@ class CategoriesSidebar extends Component {
 CategoriesSidebar.propTypes = {
   updateAppState: PropTypes.func.isRequired,
   categoriesArray: PropTypes.arrayOf(PropTypes.object),
-  categoryId: PropTypes.string,
   handleClick: PropTypes.func.isRequired,
 };
 
 CategoriesSidebar.defaultProps = {
   categoriesArray: [],
-  categoryId: '',
 };
 
 export default CategoriesSidebar;
