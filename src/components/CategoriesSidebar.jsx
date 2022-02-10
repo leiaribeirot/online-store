@@ -10,6 +10,17 @@ class CategoriesSidebar extends Component {
     updateAppState({ categoriesArray });
   }
 
+  componentDidUpdate = (prevProps) => {
+    const { categoryId, handleClick } = this.props;
+    const { prevCategoryId } = prevProps;
+    if (prevCategoryId !== categoryId) { handleClick(); }
+  }
+
+  onRadioButtonClick = (categoryId) => {
+    const { updateAppState, handleClick } = this.props;
+    updateAppState({ categoryId });
+  }
+
   render() {
     const { categoriesArray } = this.props;
     return (
@@ -20,9 +31,10 @@ class CategoriesSidebar extends Component {
             <li key={ category.id }>
               <Input
                 type="radio"
-                name={ category.name }
+                name="item-categoria"
                 labelText={ category.name }
                 labelId="category"
+                onChange={ () => this.onRadioButtonClick(category.id) }
               />
             </li>))}
         </ul>
