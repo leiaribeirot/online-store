@@ -7,7 +7,7 @@ class CardList extends Component {
     const { searchResults } = this.props;
     return (
       <div>
-        CAtegories
+        Product List
         { searchResults.map((result) => (
           <Card
             key={ result.id }

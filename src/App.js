@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   updateAppState = (entries, callbackFunction) => {
-    this.setState({ ...entries }, () => callbackFunction);
+    this.setState({ ...entries }, callbackFunction);
   };
 
   handleChange = ({ target: { name, value } }) => {
@@ -20,8 +20,8 @@ class App extends React.Component {
   };
 
   handleClick = async () => {
-    const { searchInput } = this.state;
-    const queryResponse = await getProductsFromCategoryAndQuery('', searchInput);
+    const { searchInput, categoryId } = this.state;
+    const queryResponse = await getProductsFromCategoryAndQuery(categoryId, searchInput);
     const searchResults = queryResponse.results;
     this.setState({ searchResults });
   }
