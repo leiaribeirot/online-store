@@ -12,6 +12,16 @@ class App extends React.Component {
     this.setState({ [name]: value });
   };
 
+  handleClick = () => {
+    console.log('handleClick', this.state)
+  }
+
+  handleOnKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      console.log('handleOnKeyDown', this.state)
+    }
+  }
+
   render() {
     return (
       <BrowserRouter>
