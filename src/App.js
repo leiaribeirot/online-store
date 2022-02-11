@@ -5,6 +5,12 @@ import Home from './pages/Home';
 import CardCarrinho from './components/CardCarrinho';
 
 class App extends React.Component {
+  state = {
+    selectedRadioButton: null,
+    email: '',
+    disabled: true,
+  }
+
   updateAppState = (entries, callbackFunction) => {
     this.setState({ ...entries }, () => callbackFunction);
   };
