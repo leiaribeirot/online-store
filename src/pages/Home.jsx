@@ -5,6 +5,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import Input from '../components/Input';
 import CategoriesSidebar from '../components/CategoriesSidebar';
 import CardList from '../components/CardList';
+import Header from '../components/Header';
 import '../Styles/Header.css';
 
 class Home extends Component {
@@ -19,9 +20,7 @@ class Home extends Component {
 
     return (
       <div>
-        <div className="header">
-          <h1>  Front-End Online Store</h1>
-        </div>
+        <Header />
         <Input
           type="text"
           labelId="home-initial-message"
@@ -39,9 +38,6 @@ class Home extends Component {
         >
           Pesquisar
         </button>
-        <Link to="/CardCarrinho" data-testid="shopping-cart-button">
-          <AiOutlineShoppingCart />
-        </Link>
         <CardList { ...this.props } onAddProduct={ handleAddProduct } />
         <CategoriesSidebar { ...this.props } />
       </div>
