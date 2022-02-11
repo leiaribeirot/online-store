@@ -13,6 +13,7 @@ class ProductDetails extends Component {
   render() {
     const { currentProductDetailed, handleAddProduct } = this.props;
     const { title, thumbnail, price, attributes } = currentProductDetailed;
+    // commit
     return (
       <div>
         <Link
@@ -34,7 +35,6 @@ class ProductDetails extends Component {
         >
           Adicionar ao carrinho
         </button>
-
         <p>Especificações Técnicas</p>
         <div>
           {attributes.map(({ name: attName, id, value_name: valueName }) => (
