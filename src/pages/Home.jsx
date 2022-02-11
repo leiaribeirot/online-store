@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import Input from '../components/Input';
 import CategoriesSidebar from '../components/CategoriesSidebar';
 import CardList from '../components/CardList';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 class Home extends Component {
   render() {
