@@ -2,60 +2,41 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class CardCarrinho extends Component {
-  state = {
-    cartList: [],
-  }
-
-  componentDidMount = () => {
-    this.generateCartList();
-  }
-
-  generateCartList = () => {
-    const { cartItems } = this.props;
-    const cartList = cartItems.reduce((cartListAcc, currCartItem) => {
-      const indexOfCartItem = cartListAcc
-        .findIndex((cartListItem) => cartListItem.id === currCartItem.id);
-
-      if (indexOfCartItem >= 0) {
-        cartListAcc[indexOfCartItem].quantity += 1;
-        cartListAcc[indexOfCartItem].totalPrice += currCartItem.price;
-        return cartListAcc;
-      }
-      const newCartObj = { ...currCartItem };
-      newCartObj.totalPrice = currCartItem.price;
-      const accumulatorArray = [...cartListAcc, newCartObj];
-      return accumulatorArray;
-    }, []);
-    this.setState({ cartList });
-  }
-
-  addToCartList= (item) => {
-    const { cartList } = this.state;
-    const foundItem = cartList.find((listItem) => listItem.id === item.id);
+  addtoCartItem= (product) => {
+    const { cartItems, updateAppState } = this.props;
+    const indexOfFoundItem = cartItems
+      .findIndex((cartItem) => cartItem.id === product.id);
+    const foundItem = cartItems[indexOfFoundItem];
     foundItem.quantity += 1;
     foundItem.totalPrice += foundItem.price;
-    const updatedCartlist = { ...cartList, ...foundItem };
-    this.setState({ cartList: [updatedCartlist] });
+    updateAppState({ cartItems });
   }
 
-  removeFromCartList= (item) => {
-    const { cartList } = this.state;
-    const foundItem = cartList.find((listItem) => listItem.id === item.id);
+  removeFromCartItem = (product) => {
+    const { cartItems, updateAppState } = this.props;
+    const indexOfFoundItem = cartItems
+      .findIndex((cartItem) => cartItem.id === product.id);
+    const foundItem = cartItems[indexOfFoundItem];
     foundItem.quantity -= 1;
     foundItem.totalPrice -= foundItem.price;
-    const updatedCartlist = { ...cartList, ...foundItem };
-    this.setState({ cartList: [updatedCartlist] });
+    if (foundItem.quantity <= 0) {
+      const cartWithoutProduct = cartItems
+        .filter((cartItem) => cartItem.id !== product.id);
+      updateAppState({ cartItems: cartWithoutProduct });
+      return;
+    }
+
+    updateAppState({ cartItems });
   }
 
   render() {
     const { cartItems } = this.props;
-    const { cartList } = this.state;
 
     return (
       <div>
         {
           cartItems.length > 0
-            ? (cartList.map((item) => (
+            ? (cartItems.map((item) => (
               <div key={ item.id }>
                 <p data-testid="shopping-cart-product-name">{item.title}</p>
                 <p data-testid="shopping-cart-product-quantity">
@@ -65,14 +46,14 @@ export default class CardCarrinho extends Component {
                 <button
                   data-testid="product-decrease-quantity"
                   type="button"
-                  onClick={ () => this.removeFromCartList(item) }
+                  onClick={ () => this.removeFromCartItem(item) }
                 >
                   -
                 </button>
                 <button
                   data-testid="product-increase-quantity"
                   type="button"
-                  onClick={ () => this.addToCartList(item) }
+                  onClick={ () => this.addtoCartItem(item) }
                 >
                   +
                 </button>
@@ -87,4 +68,5 @@ export default class CardCarrinho extends Component {
 
 CardCarrinho.propTypes = {
   cartItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  updateAppState: PropTypes.func.isRequired,
 };

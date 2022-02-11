@@ -34,8 +34,19 @@ class App extends React.Component {
   }
 
   handleAddProduct = (product) => {
-    product.quantity = 1;
     const { cartItems } = this.state;
+    const indexOfCartItem = cartItems
+      .findIndex((cartListItem) => cartListItem.id === product.id);
+
+    if (indexOfCartItem >= 0) {
+      const foundItem = cartItems[indexOfCartItem];
+      foundItem.quantity += 1;
+      foundItem.totalPrice += foundItem.price;
+      this.setState({ cartItems });
+      return;
+    }
+    product.quantity = 1;
+    product.totalPrice = product.price;
     this.setState({ cartItems: [...cartItems, product] });
   }
 
@@ -61,7 +72,11 @@ class App extends React.Component {
           <Route
             exact
             path="/CardCarrinho"
-            component={ () => <CardCarrinho cartItems={ cartItems } /> }
+            component={ () => (
+              <CardCarrinho
+                cartItems={ cartItems }
+                updateAppState={ this.updateAppState }
+              />) }
           />
           <Route
             path="/product-details/:id"
