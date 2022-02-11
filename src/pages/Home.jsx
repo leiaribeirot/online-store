@@ -24,23 +24,28 @@ class Home extends Component {
       <main>
         <Header />
         <body className="body">
-          <Input
-            type="text"
-            labelId="home-initial-message"
-            inputId="query-input"
-            labelText="Digite algum termo de pesquisa ou escolha uma categoria."
-            value={ searchInput }
-            name="searchInput"
-            onChange={ handleChange }
-            onKeyDown={ handleOnKeyDown }
-          />
-          <button
-            type="button"
-            data-testid="query-button"
-            onClick={ handleClick }
-          >
-            Pesquisar
-          </button>
+          <div className="search">
+            <Input
+              classInput="searchInput"
+              classLabel="searchLabel"
+              type="text"
+              labelId="home-initial-message"
+              inputId="query-input"
+              labelText="Digite algum termo de pesquisa ou escolha uma categoria."
+              value={ searchInput }
+              name="searchInput"
+              onChange={ handleChange }
+              onKeyDown={ handleOnKeyDown }
+            />
+            <button
+              className="searchButton"
+              type="button"
+              data-testid="query-button"
+              onClick={ handleClick }
+            >
+              Pesquisar
+            </button>
+          </div>
           <div className="allProducts">
             <section className="sideBar">
               <CategoriesSidebar { ...this.props } />

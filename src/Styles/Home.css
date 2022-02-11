@@ -1,5 +1,24 @@
 .body {
-    background-image: linear-gradient(315deg, #f1e59e6e 15%, #b3dac26e 74%);
-    padding-top: 2%;
-    padding-left: 1%;
+  background-image: linear-gradient(315deg, #f1e59e6e 15%, #b3dac26e 74%);
+  padding-top: 2%;
+  padding-left: 1%;
 }
+
+.search {
+  justify-content: center;
+  display: flex;
+}
+
+.searchLabel > span {
+  display: none;
+}
+
+.searchInput {
+  width: 400px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.searchButton {
+  width: 100px;
+}
+
