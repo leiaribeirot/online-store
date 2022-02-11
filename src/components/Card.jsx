@@ -4,7 +4,15 @@ import { Link } from 'react-router-dom';
 
 class Card extends React.Component {
   render() {
-    const { dataId, productName, src, price, productId, imageId, onAddProduct } = this.props;
+    const {
+      dataId,
+      productName,
+      src,
+      price,
+      productId,
+      imageId,
+      onAddProduct,
+    } = this.props;
 
     const item = {
       id: productId,
