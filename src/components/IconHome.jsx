@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { AiOutlineHome } from 'react-icons/ai';
 
-class HomeIcon extends Component {
+class IconHome extends Component {
   render() {
     return (
       <Link to="/">
@@ -13,4 +13,4 @@ class HomeIcon extends Component {
   }
 }
 
-export default HomeIcon;
+export default IconHome;
