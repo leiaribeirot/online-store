@@ -26,6 +26,7 @@ class CategoriesSidebar extends Component {
               <Input
                 type="radio"
                 name="item-categoria"
+                id={ category.id }
                 labelText={ category.name }
                 labelId="category"
                 onChange={ () => this.onRadioButtonClick(category.id) }

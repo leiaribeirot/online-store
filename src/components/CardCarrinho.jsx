@@ -10,8 +10,8 @@ export default class CardCarrinho extends Component {
         {
           cartItems.length > 0
             ? (cartItems.map((item) => (
-              <div key={ item.name }>
-                <span data-testid="shopping-cart-product-name">{item.name}</span>
+              <div key={ item.id }>
+                <span data-testid="shopping-cart-product-name">{item.title}</span>
                 <span data-testid="shopping-cart-product-quantity">{item.quantity}</span>
               </div>
             )))
