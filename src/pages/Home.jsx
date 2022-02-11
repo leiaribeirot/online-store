@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import Input from '../components/Input';
 import CategoriesSidebar from '../components/CategoriesSidebar';
 import CardList from '../components/CardList';
@@ -39,7 +40,7 @@ class Home extends Component {
           Pesquisar
         </button>
         <Link to="/CardCarrinho" data-testid="shopping-cart-button">
-          Carrinho de Compras
+          <AiOutlineShoppingCart />
         </Link>
         <CardList { ...this.props } onAddProduct={ handleAddProduct } />
         <CategoriesSidebar { ...this.props } />
