@@ -9,6 +9,7 @@ import ProductDetails from './pages/ProductDetails';
 class App extends React.Component {
   state = {
     searchInput: '',
+    cartItems: [],
   }
 
   updateAppState = (entries, callbackFunction) => {
@@ -32,7 +33,15 @@ class App extends React.Component {
     }
   }
 
+  handleAddProduct = (product) => {
+    const { cartItems } = this.state;
+    cartItems.push(product);
+    this.setState({ cartItems });
+  }
+
   render() {
+    const { cartItems } = this.state;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -46,9 +55,14 @@ class App extends React.Component {
                 updateAppState={ this.updateAppState }
                 handleClick={ this.handleClick }
                 handleOnKeyDown={ this.handleOnKeyDown }
+                handleAddProduct={ this.handleAddProduct }
               />) }
           />
-          <Route exact path="/CardCarrinho" component={ CardCarrinho } />
+          <Route
+            exact
+            path="/CardCarrinho"
+            component={ () => <CardCarrinho cartItems={ cartItems } /> }
+          />
           <Route
             path="/product-details/:id"
             render={ (props) => (
