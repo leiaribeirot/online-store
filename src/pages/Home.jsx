@@ -8,7 +8,13 @@ import '../Styles/Header.css';
 
 class Home extends Component {
   render() {
-    const { searchInput, handleChange, handleClick, handleOnKeyDown } = this.props;
+    const {
+      searchInput,
+      handleChange,
+      handleClick,
+      handleOnKeyDown,
+      handleAddProduct,
+    } = this.props;
 
     return (
       <div>
@@ -35,7 +41,7 @@ class Home extends Component {
         <Link to="/CardCarrinho" data-testid="shopping-cart-button">
           Carrinho de Compras
         </Link>
-        <CardList { ...this.props } />
+        <CardList { ...this.props } onAddProduct={ handleAddProduct } />
         <CategoriesSidebar { ...this.props } />
       </div>
     );
@@ -46,6 +52,7 @@ Home.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
   handleOnKeyDown: PropTypes.func.isRequired,
+  handleAddProduct: PropTypes.func.isRequired,
 };
 
 Home.defaultProps = {

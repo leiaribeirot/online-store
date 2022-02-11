@@ -4,7 +4,7 @@ import Card from './Card';
 
 class CardList extends Component {
   render() {
-    const { searchResults } = this.props;
+    const { searchResults, onAddProduct } = this.props;
     return (
       <div>
         Product List
@@ -17,6 +17,7 @@ class CardList extends Component {
             price={ result.price }
             src={ result.thumbnail }
             productId={ result.id }
+            onAddProduct={ onAddProduct }
           />))}
       </div>
     );
@@ -25,6 +26,7 @@ class CardList extends Component {
 
 CardList.propTypes = {
   searchResults: PropTypes.arrayOf(PropTypes.object),
+  onAddProduct: PropTypes.func.isRequired,
 };
 
 CardList.defaultProps = {

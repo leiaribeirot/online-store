@@ -9,6 +9,7 @@ import ProductDetails from './pages/ProductDetails';
 class App extends React.Component {
   state = {
     searchInput: '',
+    cartItems: [],
   }
 
   updateAppState = (entries, callbackFunction) => {
@@ -32,37 +33,46 @@ class App extends React.Component {
     }
   }
 
+  handleAddProduct = (product) => {
+    const { cartItems } = this.state;
+    this.setState({ cartItems: [...cartItems, product] });
+  }
+
   render() {
+    const { cartItems } = this.state;
+
     return (
-      <div className="body">
-        <BrowserRouter>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={ () => (
-                <Home
-                  { ...this.state }
-                  handleChange={ this.handleChange }
-                  updateAppState={ this.updateAppState }
-                  handleClick={ this.handleClick }
-                  handleOnKeyDown={ this.handleOnKeyDown }
-                />) }
-            />
-            <Route exact path="/CardCarrinho" component={ CardCarrinho } />
-            <Route
-              path="/product-details/:id"
-              render={ (props) => (
-                <ProductDetails
-                  { ...props }
-                  { ...this.state }
-                  updateAppState={ this.updateAppState }
-                />) }
-            />
-          </Switch>
-        </BrowserRouter>
-      </div>
-    );
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={ () => (
+              <Home
+                { ...this.state }
+                handleChange={ this.handleChange }
+                updateAppState={ this.updateAppState }
+                handleClick={ this.handleClick }
+                handleOnKeyDown={ this.handleOnKeyDown }
+                handleAddProduct={ this.handleAddProduct }
+              />) }
+          />
+          <Route
+            exact
+            path="/CardCarrinho"
+            component={ () => <CardCarrinho cartItems={ cartItems } /> }
+          />
+          <Route
+            path="/product-details/:id"
+            render={ (props) => (
+              <ProductDetails
+                { ...props }
+                { ...this.state }
+                updateAppState={ this.updateAppState }
+              />) }
+          />
+        </Switch>
+      </BrowserRouter>);
   }
 }
 
