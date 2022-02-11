@@ -24,7 +24,8 @@ class Input extends Component {
           onKeyDown={ onKeyDown }
           onClick={ onClick }
         />
-      </label>);
+      </label>
+    );
   }
 }
 

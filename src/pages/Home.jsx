@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Input from '../components/Input';
 import CategoriesSidebar from '../components/CategoriesSidebar';
 import CardList from '../components/CardList';
+import '../Styles/Header.css';
 
 class Home extends Component {
   render() {
@@ -11,6 +12,9 @@ class Home extends Component {
 
     return (
       <div>
+        <div className="header">
+          <h1>  Front-End Online Store</h1>
+        </div>
         <Input
           type="text"
           labelId="home-initial-message"

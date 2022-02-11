@@ -34,32 +34,35 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={ () => (
-              <Home
-                { ...this.state }
-                handleChange={ this.handleChange }
-                updateAppState={ this.updateAppState }
-                handleClick={ this.handleClick }
-                handleOnKeyDown={ this.handleOnKeyDown }
-              />) }
-          />
-          <Route exact path="/CardCarrinho" component={ CardCarrinho } />
-          <Route
-            path="/product-details/:id"
-            render={ (props) => (
-              <ProductDetails
-                { ...props }
-                { ...this.state }
-                updateAppState={ this.updateAppState }
-              />) }
-          />
-        </Switch>
-      </BrowserRouter>);
+      <div className="body">
+        <BrowserRouter>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={ () => (
+                <Home
+                  { ...this.state }
+                  handleChange={ this.handleChange }
+                  updateAppState={ this.updateAppState }
+                  handleClick={ this.handleClick }
+                  handleOnKeyDown={ this.handleOnKeyDown }
+                />) }
+            />
+            <Route exact path="/CardCarrinho" component={ CardCarrinho } />
+            <Route
+              path="/product-details/:id"
+              render={ (props) => (
+                <ProductDetails
+                  { ...props }
+                  { ...this.state }
+                  updateAppState={ this.updateAppState }
+                />) }
+            />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    );
   }
 }
 
