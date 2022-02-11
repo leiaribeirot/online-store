@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom/cjs/react-router-dom.min';
+import { Route, Link } from 'react-router-dom';
 import { fetchItem } from '../services/api';
 
 class ProductDetails extends Component {
@@ -11,16 +11,30 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const {
-      currentProductDetailed: { title, thumbnail, price, attributes },
-    } = this.props;
+    const { currentProductDetailed, handleAddProduct } = this.props;
+    const { title, thumbnail, price, attributes } = currentProductDetailed;
     return (
       <div>
+        <Link
+          to="/CardCarrinho"
+        >
+          <p data-testid="shopping-cart-button">
+            Carrinho de Compras
+          </p>
+        </Link>
         <h1 data-testid="product-detail-name">
           {title}
         </h1>
         <img src={ thumbnail } alt={ `Imagem do produto ${title}` } />
         <p>{`R$ ${price.toLocaleString('pt-br')}` }</p>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => handleAddProduct(currentProductDetailed) }
+        >
+          Adicionar ao carrinho
+        </button>
+
         <p>Especificações Técnicas</p>
         <div>
           {attributes.map(({ name: attName, id, value_name: valueName }) => (
@@ -49,6 +63,7 @@ ProductDetails.propTypes = {
   }),
   match: PropTypes.instanceOf(Route).isRequired,
   updateAppState: PropTypes.func.isRequired,
+  handleAddProduct: PropTypes.func.isRequired,
 };
 
 ProductDetails.defaultProps = {

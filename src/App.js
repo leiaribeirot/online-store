@@ -34,6 +34,7 @@ class App extends React.Component {
   }
 
   handleAddProduct = (product) => {
+    product.quantity = 1;
     const { cartItems } = this.state;
     this.setState({ cartItems: [...cartItems, product] });
   }
@@ -69,6 +70,7 @@ class App extends React.Component {
                 { ...props }
                 { ...this.state }
                 updateAppState={ this.updateAppState }
+                handleAddProduct={ this.handleAddProduct }
               />) }
           />
         </Switch>
