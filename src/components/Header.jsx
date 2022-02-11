@@ -6,10 +6,10 @@ import IconHome from './IconHome';
 class Header extends Component {
   render() {
     return (
-      <div>
+      <div className="header">
         <IconHome />
         <h1> Front-End Online Store </h1>
-        <Link to="/CardCarrinho" data-testid="shopping-cart-button">
+        <Link to="/CardCarrinho" className="cartIcon" data-testid="shopping-cart-button">
           <AiOutlineShoppingCart />
         </Link>
 
@@ -19,4 +19,3 @@ class Header extends Component {
 }
 
 export default Header;
-// data-testeid="shopping-cart-button"

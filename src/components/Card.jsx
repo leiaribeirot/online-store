@@ -34,7 +34,9 @@ class Card extends React.Component {
               src={ src }
               alt={ `Imagem do produto: ${productName}` }
             />
-            <span>{ price }</span>
+            <p>
+              { `Preço: RS$ ${price}` }
+            </p>
           </div>
         </Link>
         <button

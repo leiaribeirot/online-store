@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+// import { AiOutlineShoppingCart } from 'react-icons/ai';
 import Input from '../components/Input';
 import CategoriesSidebar from '../components/CategoriesSidebar';
 import CardList from '../components/CardList';
 import Header from '../components/Header';
 import '../Styles/Header.css';
+import '../Styles/allProducts.css';
 
 class Home extends Component {
   render() {
@@ -38,8 +39,10 @@ class Home extends Component {
         >
           Pesquisar
         </button>
-        <CardList { ...this.props } onAddProduct={ handleAddProduct } />
-        <CategoriesSidebar { ...this.props } />
+        <div className="allProducts">
+          <section className="sideBar"><CategoriesSidebar { ...this.props } /></section>
+          <section className="productsList"><CardList { ...this.props } onAddProduct={ handleAddProduct } /></section>
+        </div>
       </div>
     );
   }

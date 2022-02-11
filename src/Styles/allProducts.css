@@ -1,0 +1,22 @@
+.allProducts{
+    display: flex;
+}
+.sideBar{
+    justify-content: left;
+    margin-top: 2%;
+    margin-right: 10%;
+}
+
+.productsList  {
+    margin: 2% ;
+    padding: 1%;
+    border: 2px solid;
+    font-size: 0.8em;
+    
+}
+
+img {
+    max-width: 150px;
+    padding: 1%;
+    margin-right: 5% ;
+}
