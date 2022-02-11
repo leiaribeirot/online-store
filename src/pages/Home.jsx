@@ -6,6 +6,7 @@ import Input from '../components/Input';
 import CategoriesSidebar from '../components/CategoriesSidebar';
 import RatingProducts from '../components/RatingProducts';
 import CardList from '../components/CardList';
+import EvaluatingForm from '../components/RatingProducts';
 
 class Home extends Component {
   render() {

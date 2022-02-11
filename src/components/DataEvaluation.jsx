@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Evaluation from '../Evaluation';
+import Evaluation from './Evaluation';
 
 export default class EvaluationsZone extends Component {
   render() {

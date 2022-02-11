@@ -1,79 +1,100 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import StarRatings from 'react-star-rating-component';
+import Evaluation from './Evaluation';
 
-class RatingProducts extends Component {
-  state = {
-    disabled: true,
-    index: [1,2,3,4,5],
-  }
-  
-  componentDidUpdate() {
-    const { disabled } = this.state;
-    const { selectedRadioButton } = this.props;
-    if(selectedRadioButton && disabled) {
-      this.setState({ disabled: false });
-    } else if (!selectedRadioButton && !disabled) {
-      this.setState({ disabled: true });
-    }
+export default class RatingProducts extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      rating: 0,
+      comment: '',
+      user: '',
+    };
   }
 
-  isRadioSelected = (value) => {
-    const { selectedRadioButton } = this.props;
-    console.log('isRadioSelected', this.state)
-    return selectedRadioButton === value; 
-  }
+  handleClick = (event, Evaluation) => {
+    event.preventDefault();
 
-  handleRadioClick = ({ target }) => {
-    const { updateAppState } = this.props;
-    const { name } = target;
-    const value = target.type === 'radio' ? +target.value : target.value;
-    updateAppState({ [name]: value })
-  }
+    const { id } = this.props;
+
+    Evaluation({ ...this.state, id });
+
+    this.setState({
+      rating: 0,
+      comment: '',
+      user: '',
+    });
+  };
+
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleStarChange = (rating) => {
+    this.setState({
+      rating,
+    });
+  };
 
   render() {
-    const { index, disabled  } = this.state;
-    const { email } = this.props;
+    const { rating, comment, user } = this.state;
+    const { addEvaluation } = this.props;
+
     return (
-      <form>
-        <input
-          type="email"
-          value={ email }
-          name="email"
-          data-testid="product-detail-email"
-          placeholder="@email"
-          onChange={ this.handleRadioClick }
-        />
-        <div>
-          {
-            index.map((e) => (
-              <label key={ e }>
-                { e }
-                <input
-                  type="radio"
-                  data-testid={`${e}-rating`}
-                  name="selectedRadioButton"
-                  value={ e }
-                  checked={ this.isRadioSelected(e) }
-                  onChange={ this.handleRadioClick }
-                />
-              </label>
-            ))
-          }
-        </div>
-        <textarea
-          data-testeid="product-detail-evaluation"
-          placeholder="Mensagem (opcional)"
-        />
-        <button
-          type="button"
-          data-testid="submit-review-btn"
-          disabled={ disabled }
-          onClick={ this.handleOnClick }
-        >
-          Enviar
-        </button>
-      </form>
-    )
+      <div className="evaluation-section">
+        <h1>Avaliações</h1>
+        <form className="evaluation-form">
+          <div className="email-rating">
+            <input
+              id="user"
+              name="user"
+              type="text"
+              value={ user }
+              onChange={ this.handleChange }
+              placeholder="Email"
+            />
+
+            <StarRatings
+              rating={ rating }
+              starRatedColor="rgb(255, 194, 25)"
+              starHoverColor="rgb(255, 194, 25)"
+              changeRating={ this.handleStarChange }
+              numberOfStars={ 5 }
+              name="rating"
+              starDimension="2em"
+              starSpacing="0.5em"
+            />
+          </div>
+
+          <textarea
+            id="comment"
+            name="comment"
+            value={ comment }
+            onChange={ this.handleChange }
+            data-testid="product-detail-evaluation"
+            placeholder="Comentários"
+          />
+
+          <button
+            type="submit"
+            onClick={ (event) => this.handleClick(event, addEvaluation) }
+          >
+            Avaliar
+          </button>
+        </form>
+      </div>
+    );
   }
 }
 
-export default RatingProducts;
+RatingProducts.propTypes = {
+  id: PropTypes.string.isRequired,
+  addEvaluation: PropTypes.func.isRequired,
+};
+
