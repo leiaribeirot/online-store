@@ -35,7 +35,7 @@ class App extends React.Component {
 
   handleAddProduct = (product) => {
     const { cartItems } = this.state;
-    this.setState({ cartItems: [...cartItems, product] })
+    this.setState({ cartItems: [...cartItems, product] });
   }
 
   render() {
