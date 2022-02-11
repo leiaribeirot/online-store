@@ -17,7 +17,7 @@ class CardList extends Component {
             price={ result.price }
             src={ result.thumbnail }
             productId={ result.id }
-            onAddProduct={ onAddProduct }
+            onAddProduct={ () => onAddProduct(result) }
           />))}
       </div>
     );

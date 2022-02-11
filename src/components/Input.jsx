@@ -11,15 +11,16 @@ class Input extends Component {
       type,
       onChange,
       onKeyDown,
-      onClick } = this.props;
+      onClick,
+      id } = this.props;
     return (
-      <label data-testid={ labelId } htmlFor={ name }>
+      <label data-testid={ labelId } htmlFor={ id }>
         {labelText}
         <input
           data-testid={ inputId }
           type={ type }
           name={ name }
-          id={ name }
+          id={ id }
           onChange={ onChange }
           onKeyDown={ onKeyDown }
           onClick={ onClick }
@@ -35,6 +36,7 @@ Input.propTypes = {
   labelText: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  id: PropTypes.string,
   onChange: PropTypes.func,
   onKeyDown: PropTypes.func,
   onClick: PropTypes.func,
@@ -46,5 +48,7 @@ Input.defaultProps = {
   onChange: () => {},
   onKeyDown: () => {},
   onClick: () => {},
+  id: '',
 };
+
 export default Input;

@@ -14,13 +14,13 @@ class Card extends React.Component {
       onAddProduct,
     } = this.props;
 
-    const item = {
-      id: productId,
-      name: productName,
-      quantity: 1,
-      image: src,
-      price,
-    };
+    // const item = {
+    //   id: productId,
+    //   name: productName,
+    //   quantity: 1,
+    //   image: src,
+    //   price,
+    // };
 
     return (
       <div>
@@ -40,7 +40,7 @@ class Card extends React.Component {
         <button
           data-testid="product-add-to-cart"
           type="button"
-          onClick={ () => onAddProduct(item) }
+          onClick={ onAddProduct }
         >
           Adicionar ao carrinho
         </button>
