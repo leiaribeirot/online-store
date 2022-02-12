@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Link } from 'react-router-dom';
 import { fetchItem } from '../services/api';
+import RatingProducts from '../components/RatingProducts';
 
 class ProductDetails extends Component {
   componentDidMount = async () => {
@@ -35,6 +36,7 @@ class ProductDetails extends Component {
         >
           Adicionar ao carrinho
         </button>
+        <RatingProducts { ...this.props } />
         <p>Especificações Técnicas</p>
         <div>
           {attributes.map(({ name: attName, id, value_name: valueName }) => (

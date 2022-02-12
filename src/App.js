@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import CardCarrinho from './components/CardCarrinho';
 import { getProductsFromCategoryAndQuery } from './services/api';
 import ProductDetails from './pages/ProductDetails';
-import EvaluatingForm from './components/EvaluatingForm';
 
 class App extends React.Component {
   state = {

@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import Input from '../components/Input';
 import CategoriesSidebar from '../components/CategoriesSidebar';
-import RatingProducts from '../components/RatingProducts';
 import CardList from '../components/CardList';
-import EvaluatingForm from '../components/RatingProducts';
 
 class Home extends Component {
   render() {
@@ -40,7 +38,6 @@ class Home extends Component {
         <Link to="/CardCarrinho" data-testid="shopping-cart-button">
           <AiOutlineShoppingCart />
         </Link>
-        <RatingProducts { ...this.props } />
         <CardList { ...this.props } onAddProduct={ handleAddProduct } />
         <CategoriesSidebar { ...this.props } />
       </div>
