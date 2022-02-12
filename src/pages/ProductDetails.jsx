@@ -13,7 +13,7 @@ class ProductDetails extends Component {
   render() {
     const { currentProductDetailed, handleAddProduct } = this.props;
     const { title, thumbnail, price, attributes } = currentProductDetailed;
-    // commit
+
     return (
       <div>
         <Link
