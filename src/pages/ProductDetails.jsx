@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { fetchItem } from '../services/api';
-import Header from '../components/Header';
 
 class ProductDetails extends Component {
   componentDidMount = async () => {
@@ -17,7 +16,13 @@ class ProductDetails extends Component {
 
     return (
       <div>
-        <Header />
+        <Link
+          to="/CardCarrinho"
+        >
+          <p data-testid="shopping-cart-button">
+            Carrinho de Compras
+          </p>
+        </Link>
         <h1 data-testid="product-detail-name">
           {title}
         </h1>
@@ -49,7 +54,6 @@ class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-  // currentProductDetailed: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array])),
   currentProductDetailed: PropTypes.shape({
     title: PropTypes.string,
     thumbnail: PropTypes.string,

@@ -12,15 +12,8 @@ class Card extends React.Component {
       productId,
       imageId,
       onAddProduct,
+      isAddDisabled,
     } = this.props;
-
-    // const item = {
-    //   id: productId,
-    //   name: productName,
-    //   quantity: 1,
-    //   image: src,
-    //   price,
-    // };
 
     return (
       <div>
@@ -43,6 +36,7 @@ class Card extends React.Component {
           data-testid="product-add-to-cart"
           type="button"
           onClick={ onAddProduct }
+          disabled={ isAddDisabled }
         >
           Adicionar ao carrinho
         </button>
@@ -59,6 +53,7 @@ Card.propTypes = {
   productId: PropTypes.string.isRequired,
   imageId: PropTypes.string.isRequired,
   onAddProduct: PropTypes.func.isRequired,
+  isAddDisabled: PropTypes.bool.isRequired,
 };
 
 export default Card;

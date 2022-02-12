@@ -24,6 +24,7 @@ class App extends React.Component {
     const { searchInput, categoryId } = this.state;
     const queryResponse = await getProductsFromCategoryAndQuery(categoryId, searchInput);
     const searchResults = queryResponse.results;
+    searchResults.forEach((result) => { result.isAddDisabled = false; });
     this.setState({ searchResults });
   }
 
@@ -37,17 +38,35 @@ class App extends React.Component {
     const { cartItems } = this.state;
     const indexOfCartItem = cartItems
       .findIndex((cartListItem) => cartListItem.id === product.id);
-
     if (indexOfCartItem >= 0) {
       const foundItem = cartItems[indexOfCartItem];
-      foundItem.quantity += 1;
+      foundItem.cartQuantity += 1;
       foundItem.totalPrice += foundItem.price;
+      foundItem.availability = this.isAddButtonDisabled(product);
       this.setState({ cartItems });
       return;
     }
-    product.quantity = 1;
+    product.cartQuantity = 1;
+    product.availability = this.isAddButtonDisabled(product);
     product.totalPrice = product.price;
+    this.checkAvalabilityOfResults(product);
     this.setState({ cartItems: [...cartItems, product] });
+  }
+
+  checkAvalabilityOfResults = (product) => {
+    const { searchResults } = this.state;
+    const indexOfResultsItem = searchResults
+      .findIndex((resultItem) => resultItem.id === product.id);
+    const foundResult = searchResults[indexOfResultsItem];
+    foundResult.isAddDisabled = this.isAddButtonDisabled(foundResult);
+    this.setState({ searchResults });
+  }
+
+  isAddButtonDisabled = ({ cartQuantity, available_quantity: availableQuantity }) => {
+    if (cartQuantity === availableQuantity) {
+      return true;
+    }
+    return false;
   }
 
   render() {
@@ -76,6 +95,7 @@ class App extends React.Component {
               <CardCarrinho
                 cartItems={ cartItems }
                 updateAppState={ this.updateAppState }
+                isAddButtonDisabled={ this.isAddButtonDisabled }
               />) }
           />
           <Route
