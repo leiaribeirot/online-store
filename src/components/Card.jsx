@@ -13,6 +13,7 @@ class Card extends React.Component {
       imageId,
       onAddProduct,
       isAddDisabled,
+      freeShipping,
     } = this.props;
 
     return (
@@ -32,6 +33,7 @@ class Card extends React.Component {
             </p>
           </div>
         </Link>
+        {freeShipping && <p data-testid="free-shipping">Frete Grátis</p>}
         <button
           data-testid="product-add-to-cart"
           type="button"
@@ -54,6 +56,7 @@ Card.propTypes = {
   imageId: PropTypes.string.isRequired,
   onAddProduct: PropTypes.func.isRequired,
   isAddDisabled: PropTypes.bool.isRequired,
+  freeShipping: PropTypes.bool.isRequired,
 };
 
 export default Card;

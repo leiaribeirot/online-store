@@ -8,21 +8,19 @@ class CardList extends Component {
     return (
       <div>
         <p>Product List</p>
-        { searchResults.map((result) => {
-          console.log(result.id, result.available_quantity);
-          return (
-            <Card
-              key={ result.id }
-              dataId="product"
-              productName={ result.title }
-              imageId="product-detail-link"
-              price={ result.price }
-              src={ result.thumbnail }
-              productId={ result.id }
-              onAddProduct={ () => onAddProduct(result) }
-              isAddDisabled={ result.isAddDisabled }
-            />);
-        })}
+        { searchResults.map((result) => (
+          <Card
+            key={ result.id }
+            dataId="product"
+            productName={ result.title }
+            imageId="product-detail-link"
+            price={ result.price }
+            src={ result.thumbnail }
+            productId={ result.id }
+            onAddProduct={ () => onAddProduct(result) }
+            isAddDisabled={ result.isAddDisabled }
+            freeShipping={ result.shipping.free_shipping }
+          />))}
       </div>
     );
   }
