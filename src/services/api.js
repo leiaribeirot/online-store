@@ -18,3 +18,4 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
 // USANDO FETCH https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch
 // FECTH - Acessar e manipular partes do pipeline HTTP.
 // FECTH - Fornece uma maneira fácil e lógica para buscar recursos de forma assíncrona
+// Lembrar de usar " import * as api from './services/api' " se preciso
