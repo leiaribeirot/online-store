@@ -14,14 +14,6 @@ class Card extends React.Component {
       onAddProduct,
     } = this.props;
 
-    // const item = {
-    //   id: productId,
-    //   name: productName,
-    //   quantity: 1,
-    //   image: src,
-    //   price,
-    // };
-
     return (
       <div>
         <Link to={ `/product-details/${productId}` }>

@@ -9,7 +9,7 @@ import ProductDetails from './pages/ProductDetails';
 class App extends React.Component {
   state = {
     searchInput: '',
-    cartItems: [],
+    cartItems: JSON.parse((localStorage.getItem('cartItems') ?? '[]')),
   }
 
   updateAppState = (entries, callbackFunction) => {
@@ -34,9 +34,18 @@ class App extends React.Component {
   }
 
   handleAddProduct = (product) => {
-    product.quantity = 1;
     const { cartItems } = this.state;
-    this.setState({ cartItems: [...cartItems, product] });
+    const existItem = cartItems.find((item) => item.id === product.id);
+
+    if (existItem === undefined) {
+      product.quantity = 1;
+      cartItems.push(product);
+    } else {
+      existItem.quantity += 1;
+    }
+
+    this.setState({ cartItems });
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }
 
   render() {

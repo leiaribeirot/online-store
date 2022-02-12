@@ -7,6 +7,17 @@ import CategoriesSidebar from '../components/CategoriesSidebar';
 import CardList from '../components/CardList';
 
 class Home extends Component {
+  getCartQuantity() {
+    const { cartItems } = this.props;
+
+    let sum = 0;
+    cartItems.forEach((element) => {
+      sum += element.quantity;
+    });
+
+    return sum;
+  }
+
   render() {
     const {
       searchInput,
@@ -37,6 +48,7 @@ class Home extends Component {
         </button>
         <Link to="/CardCarrinho" data-testid="shopping-cart-button">
           <AiOutlineShoppingCart />
+          <span data-testid="shopping-cart-size">{this.getCartQuantity()}</span>
         </Link>
         <CardList { ...this.props } onAddProduct={ handleAddProduct } />
         <CategoriesSidebar { ...this.props } />
@@ -50,6 +62,7 @@ Home.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleOnKeyDown: PropTypes.func.isRequired,
   handleAddProduct: PropTypes.func.isRequired,
+  cartItems: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 Home.defaultProps = {
