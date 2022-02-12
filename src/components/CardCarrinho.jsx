@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Header from './Header';
 
 export default class CardCarrinho extends Component {
   addtoCartItem= (product) => {
@@ -31,9 +32,9 @@ export default class CardCarrinho extends Component {
 
   render() {
     const { cartItems } = this.props;
-
     return (
       <div>
+        <Header />
         {
           cartItems.length > 0
             ? (cartItems.map((item) => (
