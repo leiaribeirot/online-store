@@ -31,7 +31,7 @@ class ProductDetails extends Component {
         >
           Adicionar ao carrinho
         </button>
-        <EvaluatingForm { ...this.props } />
+        <EvaluatingForm />
         <p>Especificações Técnicas</p>
         <div>
           {attributes.map(({ name: attName, id, value_name: valueName }) => (

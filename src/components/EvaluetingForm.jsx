@@ -1,31 +1,24 @@
 import React, { Component } from 'react';
+import StarRatings from 'react-star-ratings';
 import PropTypes from 'prop-types';
-import StarRatings from 'react-star-rating-component';
 
-export default class EvaluatingForm extends Component {
+export default class EvaluetingForm extends Component {
   constructor() {
     super();
-
-    this.state = {
-      rating: 0,
-      comment: '',
+    this.state = { // estado inicial
       user: '',
+      validadeEmail: false,
     };
+    this.MIN_NAME_LENGTH = 3; // o construtor encherga as funções que queremos mostrar
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleClick = (event, addEvaluation) => {
-    event.preventDefault();
-
-    const { id } = this.props;
-
-    addEvaluation({ ...this.state, id });
-
+  handleChange({ target: { value } }) { // Mudando o estado apenas com 3 caracteres obrigatório pro email
     this.setState({
-      rating: 0,
-      comment: '',
-      user: '',
+      user: value,
+      validadeEmail: value.length >= this.MIN_NAME_LENGTH,
     });
-  };
+  }
 
   handleStarChange = (rating) => {
     this.setState({
@@ -34,22 +27,12 @@ export default class EvaluatingForm extends Component {
   };
 
   render() {
-    const { rating, user } = this.state;
-
+    const { user, validadeEmail, rating, comment } = this.state;
     return (
-      <div className="evaluation-section">
+      <div>
         <h1>Avaliações</h1>
-        <form className="evaluation-form">
-          <div className="email-rating">
-            <input
-              id="user"
-              name="user"
-              type="text"
-              value={ user }
-              onChange={ this.handleChange }
-              placeholder="Email"
-            />
-
+        <form onSubmit={ this.handleSubmit }>
+          <div>
             <StarRatings
               rating={ rating }
               starRatedColor="rgb(255, 194, 25)"
@@ -57,28 +40,42 @@ export default class EvaluatingForm extends Component {
               changeRating={ this.handleStarChange }
               numberOfStars={ 5 }
               name="rating"
-              starDimension="2em"
+              starDimension="1.5em"
               starSpacing="0.5em"
             />
           </div>
-
-          <textarea
-            onChange={ this.handleChange }
-            data-testid="product-detail-evaluation"
-            placeholder="Comentários"
-          />
-
+          <div>
+            <input
+              id="user"
+              name="user"
+              value={ user }
+              type="text"
+              placeholder="Email"
+              onChange={ this.handleChange }
+            />
+          </div>
+          <div>
+            <textarea
+              id="comment"
+              name="comment"
+              value={ comment }
+              data-testid="product-detail-evaluation"
+              placeholder="Comentários"
+            />
+          </div>
           <button
             type="submit"
+            disabled={ !validadeEmail }
           >
-            Avaliar
+            AVALIAR
           </button>
         </form>
       </div>
     );
   }
 }
-
-EvaluatingForm.propTypes = {
-  id: PropTypes.string.isRequired,
+EvaluetingForm.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
