@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import '../Styles/Header.css';
 import { AiOutlineHome } from 'react-icons/ai';
 
-class HomeIcon extends Component {
+class IconHome extends Component {
   render() {
     return (
-      <Link className="home-icon" to="/">
+      <Link to="/" className="homeIcon">
         <AiOutlineHome />
       </Link>
     );
   }
 }
 
-export default HomeIcon;
+export default IconHome;

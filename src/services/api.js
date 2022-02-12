@@ -1,21 +1,23 @@
-const baseURL = 'https://api.mercadolibre.com/sites/MLB';
-
 export async function getCategories() {
-  const response = await fetch(`${baseURL}/categories`);
-
-  return response.json();
+  const END_POINT = 'https://api.mercadolibre.com/sites/MLB/categories';
+  const categoriesResponse = await fetch(END_POINT);
+  const responseJson = await categoriesResponse.json();
+  return responseJson;
 }
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
-  const response = await fetch(`${baseURL}/search?category=${categoryId}&q=${query}`);
-
-  return response.json();
+  const END_POINT = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`;
+  const productsQuery = await fetch(END_POINT);
+  const productResponse = await productsQuery.json();
+  return productResponse;
 }
 
-// Na criação da API é uma boa prática pegar a base e tirar apenas ou tudo o que se precisa
-// Endpoint: https://api.mercadolibre.com/sites/MLB/categories
-// Se eu pego a BASE inteira, só pego o que for pedido no requisito - caterogias
-// USANDO FETCH https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch
-// FECTH - Acessar e manipular partes do pipeline HTTP.
-// FECTH - Fornece uma maneira fácil e lógica para buscar recursos de forma assíncrona
-// Lembrar de usar " import * as api from './services/api' " se preciso
+export async function fetchItem(productId) {
+  if (!productId) {
+    return new Error('You must provide an url');
+  }
+  const url = `https://api.mercadolibre.com/items/${productId}`;
+  const response = await fetch(url);
+  const results = await response.json();
+  return results;
+}

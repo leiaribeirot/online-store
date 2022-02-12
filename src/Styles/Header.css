@@ -1,0 +1,19 @@
+.header {
+  align-items: center;
+  background-image: linear-gradient(315deg, #f2cf07da 0%, #55d285d8 74%);
+  border: 3px double black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.homeIcon {
+  font-size: 2.5em;
+  margin-left: 2%;
+}
+
+.cartIcon {
+  font-size: 2.5em;
+  margin-right: 2%;
+}
