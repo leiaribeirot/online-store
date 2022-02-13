@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import { fetchItem } from '../services/api';
-import EvaluatingForm from '../components/EvaluetingForm';
+import EvaluatingForm from '../components/EvaluatingForm';
 import Header from '../components/Header';
 
 class ProductDetails extends Component {
@@ -31,7 +31,7 @@ class ProductDetails extends Component {
         >
           Adicionar ao carrinho
         </button>
-        <EvaluatingForm />
+        <EvaluatingForm { ...this.props } />
         <p>Especificações Técnicas</p>
         <div>
           {attributes.map(({ name: attName, id, value_name: valueName }) => (
