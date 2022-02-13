@@ -1,26 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StarRatings from 'react-star-ratings';
 
 class Evaluation extends React.Component {
+  state = {
+    index: [],
+  }
+
+  isRadioSelected = (value) => {
+    const { rating } = this.props;
+    return rating === value;
+  };
+
+  ratingArray() {
+    const MAX_RATING = 5;
+    const index = [];
+    for (let e = 1; e <= MAX_RATING; e += 1) {
+      index.push(e);
+    }
+    this.setState({ index });
+  }
+
   render() {
     const { user, comment } = this.props;
-    const { rating } = this.props;
+    const { index } = this.state;
 
-    console.log(rating);
     return (
       <div>
         <div>
           <p className="email">{ user }</p>
-          <StarRatings
-            rating={ Number(rating) }
-            starRatedColor="rgb(255, 194, 25)"
-            starHoverColor="rgb(255, 194, 25)"
-            numberOfStars={ 5 }
-            name="rating"
-            starDimension="1.5em"
-            starSpacing="0.5em"
-          />
+          {
+            index.map((e) => (
+              <label htmlFor={ `radio${e}` } key={ e }>
+                { e }
+                <input
+                  id={ `radio${e}` }
+                  type="radio"
+                  name={ `${e}-rating` }
+                  value={ e }
+                  checked={ this.isRadioSelected(e) }
+                  disabled
+                />
+              </label>
+            ))
+          }
         </div>
         <p>{ comment }</p>
       </div>

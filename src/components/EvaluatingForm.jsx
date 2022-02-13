@@ -1,30 +1,60 @@
 import React, { Component } from 'react';
-import StarRatings from 'react-star-ratings';
 import PropTypes from 'prop-types';
+import EvaluationZone from './EvaluationZone';
 
 export default class EvaluatingForm extends Component {
   constructor() {
     super();
     this.state = { // estado inicial
       user: '',
-      validadeEmail: false,
       comment: '',
-      rating: 0,
-
+      disabled: true,
+      selectedRadioButton: null,
+      index: [],
     };
-    this.MIN_NAME_LENGTH = 3; // o construtor encherga as funções que queremos mostrar
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.getEvaluation();
+    this.ratingArray();
+  }
+
+  componentDidUpdate() {
+    const { disabled, selectedRadioButton } = this.state;
+    if (selectedRadioButton && disabled) {
+      this.setState({ disabled: false });
+    } else if (!selectedRadioButton && !disabled) {
+      this.setState({ disabled: true });
+    }
   }
 
   handleChange({ target: { value, name } }) { // Mudando o estado apenas com 3 caracteres obrigatório pro email
     this.setState({
       [name]: value,
-      validadeEmail: value.length >= this.MIN_NAME_LENGTH,
     });
   }
 
+  handleRadioClick = ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'radio' ? +target.value : target.value;
+    this.setState({ [name]: value });
+  }
+
+  getEvaluation() {
+    const arrayOfEvaluation = JSON.parse(localStorage.getItem('evaluations'));
+    if (arrayOfEvaluation) {
+      this.setState({ arrayOfEvaluation });
+    }
+  }
+
+  isRadioSelected = (value) => {
+    const { selectedRadioButton } = this.state;
+    return selectedRadioButton === value;
+  }
+
   onEvaluationClic = () => {
-    const { user, comment, rating } = this.state;
+    const { user, comment, selectedRadioButton: rating } = this.state;
     const { match: { params: { id } } } = this.props;
     const arrayOfEvaluation = JSON.parse(localStorage.getItem('evaluations'));
     const evaluation = { user, comment, id, rating };
@@ -37,46 +67,44 @@ export default class EvaluatingForm extends Component {
     }
     this.setState({
       user: '',
-      validadeEmail: false,
       comment: '',
-      rating: 0,
+      selectedRadioButton: null,
     });
+    this.getEvaluation();
   }
 
-  handleStarChange = (rating) => {
-    this.setState({
-      rating,
-    });
-  };
+  ratingArray() {
+    const MAX_RATING = 5;
+    const index = [];
+    for (let e = 1; e <= MAX_RATING; e += 1) {
+      index.push(e);
+    }
+    this.setState({ index });
+  }
 
   render() {
-    const { user, validadeEmail, rating, comment } = this.state;
+    const { user, comment, index, disabled } = this.state;
     return (
       <div>
         <h1>Avaliações</h1>
         <form onSubmit={ this.handleSubmit }>
           <div>
-            <StarRatings
-              rating={ rating }
-              starRatedColor="rgb(255, 194, 25)"
-              starHoverColor="rgb(255, 194, 25)"
-              changeRating={ this.handleStarChange }
-              numberOfStars={ 1 }
-              name="rating"
-              starDimension="1.5em"
-              starSpacing="0.5em"
-            />
-            <StarRatings
-              rating={ rating }
-              defaultValue={2}
-              starRatedColor="rgb(255, 194, 25)"
-              starHoverColor="rgb(255, 194, 25)"
-              changeRating={ this.handleStarChange }
-              numberOfStars={ 1 }
-              name="rating"
-              starDimension="1.5em"
-              starSpacing="0.5em"
-            />
+            {
+              index.map((e) => (
+                <label htmlFor={ `radio${e}` } key={ e }>
+                  { e }
+                  <input
+                    id={ `radio${e}` }
+                    type="radio"
+                    data-testid={ `${e}-rating` }
+                    name="selectedRadioButton"
+                    value={ e }
+                    checked={ this.isRadioSelected(e) }
+                    onChange={ this.handleRadioClick }
+                  />
+                </label>
+              ))
+            }
           </div>
           <div>
             <input
@@ -102,18 +130,21 @@ export default class EvaluatingForm extends Component {
           <button
             data-testid="submit-review-btn"
             type="button"
-            disabled={ !validadeEmail }
+            disabled={ disabled }
             onClick={ this.onEvaluationClic }
           >
             AVALIA
           </button>
         </form>
+        <EvaluationZone { ...this.state } { ...this.props } />
       </div>
     );
   }
 }
 EvaluatingForm.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };

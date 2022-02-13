@@ -2,17 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Evaluation from './Evaluation';
 
-class EvaluationsZone extends React.Component {
+class EvaluationZone extends React.Component {
   render() {
-    const { evaluations } = this.props;
+    const { arrayOfEvaluation, match: { params: { id } } } = this.props;
+    const filterEvaluation = arrayOfEvaluation
+      .filter((evaluation) => evaluation.id === id);
     return (
       <div>
-        {evaluations.map((element, index) => (
+        {filterEvaluation.map((evaluation, index) => (
           <Evaluation
             key={ index }
-            user={ element.user }
-            rating={ element.rating }
-            comment={ element.comment }
+            user={ evaluation.user }
+            rating={ evaluation.rating }
+            comment={ evaluation.comment }
           />
         ))}
       </div>
@@ -20,8 +22,16 @@ class EvaluationsZone extends React.Component {
   }
 }
 
-EvaluationsZone.propTypes = {
-  evaluations: PropTypes.arrayOf(PropTypes.object).isRequired,
+EvaluationZone.propTypes = {
+  arrayOfEvaluation: PropTypes.arrayOf(PropTypes.object),
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+EvaluationZone.defaultProps = {
+  arrayOfEvaluation: [],
 };
 
-export default EvaluationsZone;
+export default EvaluationZone;
