@@ -9,7 +9,7 @@ import ProductDetails from './pages/ProductDetails';
 class App extends React.Component {
   state = {
     searchInput: '',
-    cartItems: [],
+    cartItems: JSON.parse((localStorage.getItem('cartItems') ?? '[]')),
   }
 
   updateAppState = (entries, callbackFunction) => {
@@ -36,14 +36,17 @@ class App extends React.Component {
 
   handleAddProduct = (product) => {
     const { cartItems } = this.state;
+
     const indexOfCartItem = cartItems
       .findIndex((cartListItem) => cartListItem.id === product.id);
+
     if (indexOfCartItem >= 0) {
       const foundItem = cartItems[indexOfCartItem];
       foundItem.cartQuantity += 1;
       foundItem.totalPrice += foundItem.price;
       foundItem.availability = this.isAddButtonDisabled(product);
       this.setState({ cartItems });
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
       return;
     }
     product.cartQuantity = 1;
@@ -51,6 +54,7 @@ class App extends React.Component {
     product.totalPrice = product.price;
     this.checkAvalabilityOfResults(product);
     this.setState({ cartItems: [...cartItems, product] });
+    localStorage.setItem('cartItems', JSON.stringify([...cartItems, product]));
   }
 
   checkAvalabilityOfResults = (product) => {
