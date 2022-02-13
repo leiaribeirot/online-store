@@ -12,11 +12,15 @@ class Input extends Component {
       onChange,
       onKeyDown,
       onClick,
+      classInput,
+      classLabel,
       id } = this.props;
     return (
-      <label data-testid={ labelId } htmlFor={ id }>
-        {labelText}
+      <label className={ classLabel } data-testid={ labelId } htmlFor={ id }>
+        <span>{labelText}</span>
         <input
+          placeholder="Bucar produtos, marcas e muito mais..."
+          className={ classInput }
           data-testid={ inputId }
           type={ type }
           name={ name }
@@ -25,12 +29,15 @@ class Input extends Component {
           onKeyDown={ onKeyDown }
           onClick={ onClick }
         />
-      </label>);
+      </label>
+    );
   }
 }
 
 Input.propTypes = {
   labelId: PropTypes.string,
+  classInput: PropTypes.string.isRequired,
+  classLabel: PropTypes.string.isRequired,
   inputId: PropTypes.string,
   labelText: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

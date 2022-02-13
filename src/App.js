@@ -24,6 +24,7 @@ class App extends React.Component {
     const { searchInput, categoryId } = this.state;
     const queryResponse = await getProductsFromCategoryAndQuery(categoryId, searchInput);
     const searchResults = queryResponse.results;
+    searchResults.forEach((result) => { result.isAddDisabled = false; });
     this.setState({ searchResults });
   }
 
@@ -35,17 +36,41 @@ class App extends React.Component {
 
   handleAddProduct = (product) => {
     const { cartItems } = this.state;
-    const existItem = cartItems.find((item) => item.id === product.id);
 
-    if (existItem === undefined) {
-      product.quantity = 1;
-      cartItems.push(product);
-    } else {
-      existItem.quantity += 1;
+    const indexOfCartItem = cartItems
+      .findIndex((cartListItem) => cartListItem.id === product.id);
+
+    if (indexOfCartItem >= 0) {
+      const foundItem = cartItems[indexOfCartItem];
+      foundItem.cartQuantity += 1;
+      foundItem.totalPrice += foundItem.price;
+      foundItem.availability = this.isAddButtonDisabled(product);
+      this.setState({ cartItems });
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      return;
     }
+    product.cartQuantity = 1;
+    product.availability = this.isAddButtonDisabled(product);
+    product.totalPrice = product.price;
+    this.checkAvalabilityOfResults(product);
+    this.setState({ cartItems: [...cartItems, product] });
+    localStorage.setItem('cartItems', JSON.stringify([...cartItems, product]));
+  }
 
-    this.setState({ cartItems });
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  checkAvalabilityOfResults = (product) => {
+    const { searchResults } = this.state;
+    const indexOfResultsItem = searchResults
+      .findIndex((resultItem) => resultItem.id === product.id);
+    const foundResult = searchResults[indexOfResultsItem];
+    foundResult.isAddDisabled = this.isAddButtonDisabled(foundResult);
+    this.setState({ searchResults });
+  }
+
+  isAddButtonDisabled = ({ cartQuantity, available_quantity: availableQuantity }) => {
+    if (cartQuantity === availableQuantity) {
+      return true;
+    }
+    return false;
   }
 
   render() {
@@ -70,7 +95,12 @@ class App extends React.Component {
           <Route
             exact
             path="/CardCarrinho"
-            component={ () => <CardCarrinho cartItems={ cartItems } /> }
+            component={ () => (
+              <CardCarrinho
+                cartItems={ cartItems }
+                updateAppState={ this.updateAppState }
+                isAddButtonDisabled={ this.isAddButtonDisabled }
+              />) }
           />
           <Route
             path="/product-details/:id"

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getCategories } from '../services/api';
 import Input from './Input';
+import '../Styles/allProducts.css';
 
 class CategoriesSidebar extends Component {
   componentDidMount = async () => {
@@ -18,12 +19,14 @@ class CategoriesSidebar extends Component {
   render() {
     const { categoriesArray } = this.props;
     return (
-      <div>
-        CategoriesSidebar
+      <div className="sideCard">
+        <p>CategoriesSidebar</p>
         <ul>
           { categoriesArray.map((category) => (
             <li key={ category.id }>
               <Input
+                classInput="sidebarInput"
+                classLabel="sidebarLabel"
                 type="radio"
                 name="item-categoria"
                 id={ category.id }

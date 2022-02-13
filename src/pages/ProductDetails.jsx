@@ -16,7 +16,7 @@ class ProductDetails extends Component {
 
     let sum = 0;
     cartItems.forEach((element) => {
-      sum += element.quantity;
+      sum += element.cartQuantity;
     });
 
     return sum;
@@ -25,7 +25,7 @@ class ProductDetails extends Component {
   render() {
     const { currentProductDetailed, handleAddProduct } = this.props;
     const { title, thumbnail, price, attributes } = currentProductDetailed;
-    // commit
+
     return (
       <div>
         <Link to="/CardCarrinho" data-testid="shopping-cart-button">
@@ -63,7 +63,6 @@ class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-  // currentProductDetailed: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array])),
   currentProductDetailed: PropTypes.shape({
     title: PropTypes.string,
     thumbnail: PropTypes.string,

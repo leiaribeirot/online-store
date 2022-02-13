@@ -7,7 +7,7 @@ class CardList extends Component {
     const { searchResults, onAddProduct } = this.props;
     return (
       <div>
-        Product List
+        <p>Product List</p>
         { searchResults.map((result) => (
           <Card
             key={ result.id }
@@ -18,6 +18,8 @@ class CardList extends Component {
             src={ result.thumbnail }
             productId={ result.id }
             onAddProduct={ () => onAddProduct(result) }
+            isAddDisabled={ result.isAddDisabled }
+            freeShipping={ result.shipping.free_shipping }
           />))}
       </div>
     );
