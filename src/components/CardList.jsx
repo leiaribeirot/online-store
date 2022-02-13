@@ -18,6 +18,8 @@ class CardList extends Component {
             src={ result.thumbnail }
             productId={ result.id }
             onAddProduct={ () => onAddProduct(result) }
+            isAddDisabled={ result.isAddDisabled }
+            freeShipping={ result.shipping.free_shipping }
           />))}
       </div>
     );

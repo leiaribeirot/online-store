@@ -3,24 +3,37 @@ import PropTypes from 'prop-types';
 import Header from './Header';
 
 export default class CardCarrinho extends Component {
+  getCartQuantity() {
+    const { cartItems } = this.props;
+
+    let sum = 0;
+    cartItems.forEach((element) => {
+      sum += element.cartQuantity;
+    });
+
+    return sum;
+  }
+
   addtoCartItem= (product) => {
-    const { cartItems, updateAppState } = this.props;
+    const { cartItems, updateAppState, isAddButtonDisabled } = this.props;
     const indexOfFoundItem = cartItems
       .findIndex((cartItem) => cartItem.id === product.id);
     const foundItem = cartItems[indexOfFoundItem];
-    foundItem.quantity += 1;
+    foundItem.cartQuantity += 1;
     foundItem.totalPrice += foundItem.price;
+    foundItem.isAddDisabled = isAddButtonDisabled(product);
     updateAppState({ cartItems });
   }
 
   removeFromCartItem = (product) => {
-    const { cartItems, updateAppState } = this.props;
+    const { cartItems, updateAppState, isAddButtonDisabled } = this.props;
     const indexOfFoundItem = cartItems
       .findIndex((cartItem) => cartItem.id === product.id);
     const foundItem = cartItems[indexOfFoundItem];
-    foundItem.quantity -= 1;
+    foundItem.cartQuantity -= 1;
     foundItem.totalPrice -= foundItem.price;
-    if (foundItem.quantity <= 0) {
+    foundItem.isAddDisabled = isAddButtonDisabled(product);
+    if (foundItem.cartQuantity <= 0) {
       const cartWithoutProduct = cartItems
         .filter((cartItem) => cartItem.id !== product.id);
       updateAppState({ cartItems: cartWithoutProduct });
@@ -34,14 +47,14 @@ export default class CardCarrinho extends Component {
     const { cartItems } = this.props;
     return (
       <div>
-        <Header />
+        <Header cartNumberOfItems={ this.getCartQuantity() } />
         {
           cartItems.length > 0
             ? (cartItems.map((item) => (
               <div key={ item.id }>
                 <p data-testid="shopping-cart-product-name">{item.title}</p>
                 <p data-testid="shopping-cart-product-quantity">
-                  {`Quantidade: ${item.quantity}`}
+                  {`Quantidade: ${item.cartQuantity}`}
                 </p>
                 <p>{`Total: R$ ${item.totalPrice}`}</p>
                 <button
@@ -55,6 +68,7 @@ export default class CardCarrinho extends Component {
                   data-testid="product-increase-quantity"
                   type="button"
                   onClick={ () => this.addtoCartItem(item) }
+                  disabled={ item.isAddDisabled }
                 >
                   +
                 </button>
@@ -70,4 +84,5 @@ export default class CardCarrinho extends Component {
 CardCarrinho.propTypes = {
   cartItems: PropTypes.arrayOf(PropTypes.object).isRequired,
   updateAppState: PropTypes.func.isRequired,
+  isAddButtonDisabled: PropTypes.func.isRequired,
 };
