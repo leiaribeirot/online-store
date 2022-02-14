@@ -1,7 +1,7 @@
 .allProducts {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
   gap: 2%;
+  grid-template-columns: repeat(12, 1fr);
   padding: 3%;
 }
 
