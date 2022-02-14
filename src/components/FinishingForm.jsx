@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 
 class FinishingForm extends React.Component {
   render() {
-    const { name, email, cpf, phone, postalCode, address, onClick, onChange } = this.props;
+    const {
+      name,
+      email,
+      cpf,
+      phone,
+      postalCode,
+      address,
+      onClick,
+      onChange,
+    } = this.props;
     return (
       <div>
         <form>
