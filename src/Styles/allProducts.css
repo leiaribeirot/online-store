@@ -1,27 +1,24 @@
 .allProducts {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 5%;
+  gap: 2%;
 }
 
 .sideBar {
   background-image: linear-gradient(315deg, #f1e59e3f 15%, #b3dac26e 74%);
   border: 2px solid;
-  height: 50%;
   justify-content: left;
-  line-height: 1.35em;
-  margin-right: 5%;
-  margin-top: 2%;
-  padding: 1% 2%;
+  width: 60%; 
 }
 
 .productsList {
   background-image: linear-gradient(315deg, #f1e59e25 15%, #b3dac26e 74%);
+  margin-left: -25%;
   border: 2px solid;
   font-size: 0.8em;
-  height: 80vh;
-  margin: 2%;
-  overflow-y: scroll;
-  padding: 1%;
-  width: 60%;
+  width: 120%;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 img {
