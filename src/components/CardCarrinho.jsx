@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
+import '../Styles/cardCarrinho.css';
 
 export default class CardCarrinho extends Component {
   getCartQuantity() {
