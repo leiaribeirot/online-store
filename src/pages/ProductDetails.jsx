@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import { fetchItem } from '../services/api';
 import Header from '../components/Header';
+import EvaluatingForm from '../components/EvaluatingForm';
 
 class ProductDetails extends Component {
   componentDidMount = async () => {
@@ -30,6 +31,7 @@ class ProductDetails extends Component {
         >
           Adicionar ao carrinho
         </button>
+        <EvaluatingForm { ...this.props } />
         <p>Especificações Técnicas</p>
         <div>
           {attributes.map(({ name: attName, id, value_name: valueName }) => (

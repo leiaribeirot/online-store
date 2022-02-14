@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 
 class FinishingForm extends React.Component {
   render() {
-    const { name, email, cpf, phone, postalCode, adress, onClick, onChange } = this.props;
+    const {
+      name,
+      email,
+      cpf,
+      phone,
+      postalCode,
+      address,
+      onClick,
+      onChange,
+    } = this.props;
     return (
       <div>
         <form>
@@ -63,15 +72,15 @@ class FinishingForm extends React.Component {
               value={ postalCode }
             />
           </label>
-          <label htmlFor="adress">
+          <label htmlFor="address">
             Endereço:
             <input
               required
-              name="adress"
+              name="address"
               type="text"
               data-testid="checkout-address"
               onChange={ onChange }
-              value={ adress }
+              value={ address }
             />
           </label>
           <button
@@ -92,7 +101,7 @@ FinishingForm.propTypes = {
   cpf: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
   postalCode: PropTypes.string.isRequired,
-  adress: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };

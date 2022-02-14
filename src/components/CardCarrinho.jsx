@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Header from './Header';
 
 export default class CardCarrinho extends Component {
@@ -11,6 +12,7 @@ export default class CardCarrinho extends Component {
     foundItem.cartQuantity += 1;
     foundItem.totalPrice += foundItem.price;
     foundItem.isAddDisabled = isAddButtonDisabled(product);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
     updateAppState({ cartItems });
   }
 
@@ -26,9 +28,10 @@ export default class CardCarrinho extends Component {
       const cartWithoutProduct = cartItems
         .filter((cartItem) => cartItem.id !== product.id);
       updateAppState({ cartItems: cartWithoutProduct });
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
       return;
     }
-
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
     updateAppState({ cartItems });
   }
 
@@ -65,6 +68,7 @@ export default class CardCarrinho extends Component {
             )))
             : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         }
+        <Link data-testid="checkout-products" to="/checkout"> Comprar </Link>
       </div>
     );
   }

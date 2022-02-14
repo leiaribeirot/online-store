@@ -16,7 +16,6 @@ class PurchaseItem extends React.Component {
           { amount }
           Preço:
           { price }
-          ============
         </div>
       </div>
     );
