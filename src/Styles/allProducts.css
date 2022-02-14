@@ -6,32 +6,39 @@
 }
 
 .sideBar {
-  background-image: linear-gradient(315deg, #f1e59e3f 15%, #b3dac26e 74%);
+  background-color: #51f5f55e;
+  background-image: linear-gradient(315deg, #5ba7b13f 15%, #aab9cf6e 74%);
   border: 2px solid;
+  border-radius: 5px;
   display: grid;
-  grid-column: 1/5;
-  height: 700px;
+  grid-column: 1/4;
+  height: fit-content;
   justify-content: left;
 }
 
 .productsList {
-  background-image: linear-gradient(315deg, #f1e59e25 15%, #b3dac26e 74%);
+  background-color: #51f5f55e;
+  background-image: linear-gradient(315deg, #5ba7b13f 15%, #aab9cf6e 74%);
   border: 2px solid;
+  border-radius: 5px;
   display: grid;
   font-size: 0.8em;
-  grid-column: 5/12;
+  grid-column: 4/12;
   height: 700px;
   overflow-y: auto;
 }
 
 .products {
-  background-image: linear-gradient(315deg, #7a755a21 15%, #b3dac26e 74%);
+  box-shadow: 10px 5px 5px black;
+  background-color: #26e99e85;
+  background-image: linear-gradient(315deg, #5ba7b15d 15%, #aab9cf9a 74%);
   border: 1px solid;
   display: inline-grid;
   flex-wrap: wrap;
   height: 4%;
   justify-content: center;
-  margin: 10px;
+  margin-left: 3%;
+  margin-bottom: 1%;
   text-align: center;
   width: 45%;
 }
@@ -45,9 +52,9 @@ button {
 }
 
 img {
-  background-image: linear-gradient(315deg, #f2cf076e 15%, #55d2856e 74%);
+  background-image: linear-gradient(315deg, #5ba7b15d 15%, #aab9cf9a 74%);
   height: 175px;
-  padding: 1%;
+  padding: 2%;
   width: 175px;
 }
 
