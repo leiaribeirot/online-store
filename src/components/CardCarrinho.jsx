@@ -4,17 +4,6 @@ import { Link } from 'react-router-dom';
 import Header from './Header';
 
 export default class CardCarrinho extends Component {
-  getCartQuantity() {
-    const { cartItems } = this.props;
-
-    let sum = 0;
-    cartItems.forEach((element) => {
-      sum += element.cartQuantity;
-    });
-
-    return sum;
-  }
-
   addtoCartItem= (product) => {
     const { cartItems, updateAppState, isAddButtonDisabled } = this.props;
     const indexOfFoundItem = cartItems
@@ -50,7 +39,7 @@ export default class CardCarrinho extends Component {
     const { cartItems } = this.props;
     return (
       <div>
-        <Header cartNumberOfItems={ this.getCartQuantity() } />
+        <Header />
         {
           cartItems.length > 0
             ? (cartItems.map((item) => (

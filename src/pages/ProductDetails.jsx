@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Link } from 'react-router-dom';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { Route } from 'react-router-dom';
 import { fetchItem } from '../services/api';
+import Header from '../components/Header';
 import EvaluatingForm from '../components/EvaluatingForm';
 
 class ProductDetails extends Component {
@@ -12,27 +12,13 @@ class ProductDetails extends Component {
     updateAppState({ currentProductDetailed });
   }
 
-  getCartQuantity() {
-    const { cartItems } = this.props;
-
-    let sum = 0;
-    cartItems.forEach((element) => {
-      sum += element.cartQuantity;
-    });
-
-    return sum;
-  }
-
   render() {
     const { currentProductDetailed, handleAddProduct } = this.props;
     const { title, thumbnail, price, attributes } = currentProductDetailed;
 
     return (
       <div>
-        <Link to="/CardCarrinho" data-testid="shopping-cart-button">
-          <AiOutlineShoppingCart />
-          <span data-testid="shopping-cart-size">{this.getCartQuantity()}</span>
-        </Link>
+        <Header />
         <h1 data-testid="product-detail-name">
           {title}
         </h1>
