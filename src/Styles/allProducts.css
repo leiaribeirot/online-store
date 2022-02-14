@@ -1,31 +1,54 @@
 .allProducts {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  padding: 5%;
+  grid-template-columns: repeat(12, 1fr);
+  padding: 3%;
   gap: 2%;
 }
 
 .sideBar {
+  display: grid;
   background-image: linear-gradient(315deg, #f1e59e3f 15%, #b3dac26e 74%);
+  grid-column: 1/5;
   border: 2px solid;
   justify-content: left;
-  width: 60%; 
+  height: 700px;
 }
 
 .productsList {
+  display: grid;
   background-image: linear-gradient(315deg, #f1e59e25 15%, #b3dac26e 74%);
-  margin-left: -25%;
   border: 2px solid;
   font-size: 0.8em;
-  width: 120%;
-  grid-template-columns: repeat(2, 1fr);
+  grid-column: 5/12;
+  overflow-y: auto;
+  height: 700px;
+}
+
+.products {
+  background-image: linear-gradient(315deg, #7a755a21 15%, #b3dac26e 74%);
+  display: inline-grid;
+  text-align: center;
+  border: 1px solid;
+  justify-content: center;
+  width: 45%;
+  height: 4%;
+  margin: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  margin-top: auto;
+  justify-self: center;
+  text-align: center;
+  height: 30px;
+  margin-bottom: 1%;
 }
 
 img {
   background-image: linear-gradient(315deg, #f2cf076e 15%, #55d2856e 74%);
-  margin-right: 5%;
   padding: 1%;
-  width: 150px;
+  height: 175px;
+  width: 175px;
 }
 
 .sideCard > p {

@@ -17,18 +17,18 @@ class Card extends React.Component {
     } = this.props;
 
     return (
-      <div>
+      <div className="products">
         <Link to={ `/product-details/${productId}` }>
           <div data-testid={ dataId }>
-            <h2>
-              { productName }
-            </h2>
             <img
               data-testid={ imageId }
               src={ src }
               alt={ `Imagem do produto: ${productName}` }
             />
-            <p>
+            <h2>
+              { productName }
+            </h2>
+            <p className="p">
               { `Preço: RS$ ${price}` }
             </p>
           </div>
