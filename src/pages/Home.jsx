@@ -34,7 +34,7 @@ class Home extends Component {
     return (
       <main>
         <Header cartNumberOfItems={ this.getCartQuantity() } />
-        <body className="body">
+        <section className="body">
           <div className="search">
             <Input
               classInput="searchInput"
@@ -65,7 +65,7 @@ class Home extends Component {
               <CardList { ...this.props } onAddProduct={ handleAddProduct } />
             </section>
           </div>
-        </body>
+        </section>
       </main>
     );
   }

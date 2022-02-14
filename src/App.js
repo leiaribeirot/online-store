@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import CardCarrinho from './components/CardCarrinho';
 import { getProductsFromCategoryAndQuery } from './services/api';
 import ProductDetails from './pages/ProductDetails';
+import FinishingProduct from './pages/FinishingProduct';
 
 class App extends React.Component {
   state = {
@@ -111,6 +112,10 @@ class App extends React.Component {
                 updateAppState={ this.updateAppState }
                 handleAddProduct={ this.handleAddProduct }
               />) }
+          />
+          <Route
+            path="/checkout"
+            render={ () => (<FinishingProduct { ...this.state } />) }
           />
         </Switch>
       </BrowserRouter>);
