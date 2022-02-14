@@ -1,53 +1,53 @@
 .allProducts {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  padding: 3%;
   gap: 2%;
+  padding: 3%;
 }
 
 .sideBar {
-  display: grid;
   background-image: linear-gradient(315deg, #f1e59e3f 15%, #b3dac26e 74%);
-  grid-column: 1/5;
   border: 2px solid;
-  justify-content: left;
+  display: grid;
+  grid-column: 1/5;
   height: 700px;
+  justify-content: left;
 }
 
 .productsList {
-  display: grid;
   background-image: linear-gradient(315deg, #f1e59e25 15%, #b3dac26e 74%);
   border: 2px solid;
+  display: grid;
   font-size: 0.8em;
   grid-column: 5/12;
-  overflow-y: auto;
   height: 700px;
+  overflow-y: auto;
 }
 
 .products {
   background-image: linear-gradient(315deg, #7a755a21 15%, #b3dac26e 74%);
-  display: inline-grid;
-  text-align: center;
   border: 1px solid;
-  justify-content: center;
-  width: 45%;
-  height: 4%;
-  margin: 10px;
+  display: inline-grid;
   flex-wrap: wrap;
+  height: 4%;
+  justify-content: center;
+  margin: 10px;
+  text-align: center;
+  width: 45%;
 }
 
 button {
-  margin-top: auto;
-  justify-self: center;
-  text-align: center;
   height: 30px;
+  justify-self: center;
   margin-bottom: 1%;
+  margin-top: auto;
+  text-align: center;
 }
 
 img {
   background-image: linear-gradient(315deg, #f2cf076e 15%, #55d2856e 74%);
-  padding: 1%;
   height: 175px;
+  padding: 1%;
   width: 175px;
 }
 
