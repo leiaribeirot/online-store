@@ -8,21 +8,21 @@
 .cart {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 1%;
+  justify-content: center;
 }
 
 .cart-item {
-  position: relative;
   background-color: #51f5f55e;
   background-image: linear-gradient(315deg, #5ba7b13f 15%, #aab9cf9d 74%);
   border: 2px solid;
   box-shadow: 10px 5px 5px black;
+  position: relative;
+  height: auto;
   margin-top: 1%;
+  padding: 0.5%;
   text-align: center;
   width: 10%;
-  height: auto;
-  padding: 0.5%;
 }
 
 .addButton {
@@ -35,36 +35,36 @@
 }
 
 .cartLink {
-  margin: 1% auto;
-  font-size: 1.1em;
-  text-align: center;
-  width: fit-content;
-  height: auto;
+  background-color: rgb(205, 213, 216);
   border: 2px solid rgb(161, 173, 177);
   border-radius: 5px;
-  background-color: rgb(205, 213, 216);
   box-shadow: 2px 2px 2px black;
-  }
+  font-size: 1.1em;
+  height: auto;
+  margin: 1% auto;
+  text-align: center;
+  width: fit-content;
+}
 
-.cartLink:hover{
+.cartLink:hover {
   background-color: rgb(181, 179, 184);
 }
 
-.cartLink:active{
+.cartLink:active {
   background-color: white;
 }
 
-.link{
-  text-decoration: none;
+.link {
   color: black;
+  text-decoration: none;
 }
-.link > p{
+.link > p {
   margin-top: 12px;
   padding: 0 15px;
 }
 
-.cart-item > img{
+.cart-item > img {
+  height: auto;
   padding: 1px;
   width: 50%;
-  height: auto;
 }

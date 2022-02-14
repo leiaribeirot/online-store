@@ -29,10 +29,10 @@
 }
 
 .products {
-  box-shadow: 10px 5px 5px black;
   background-color: #26e99e85;
   background-image: linear-gradient(315deg, #5ba7b15d 15%, #aab9cf9a 74%);
   border: 1px solid;
+  box-shadow: 10px 5px 5px black;
   display: inline-grid;
   flex-wrap: wrap;
   height: 4%;
