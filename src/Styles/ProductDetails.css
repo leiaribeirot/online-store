@@ -1,0 +1,35 @@
+.details {
+  background-color: #8ee9c685;
+  background-image: linear-gradient(315deg, #5ba7b15d 15%, #aab9cf9a 74%);
+  border: 2px solid;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.342);
+  margin-left: 5%;
+  margin-top: 1%;
+  padding: 1%;
+  text-align: center;
+  width: 20%;
+  word-wrap: break-word;
+}
+
+.details > img {
+  height: auto;
+  width: 100px;
+}
+
+.evaluation {
+  margin-left: 1%;
+}
+
+h2 {
+  margin-left: 1%;
+}
+
+.specifications {
+  background-color: #8ee9c685;
+  background-image: linear-gradient(315deg, #5ba7b15d 15%, #aab9cf9a 74%);
+  border: 2px solid;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.342);
+  margin-left: 1%;
+  padding: 1%;
+  width: 50%;
+}

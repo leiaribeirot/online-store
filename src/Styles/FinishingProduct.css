@@ -1,0 +1,43 @@
+.item-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5%;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.item {
+  border: 2px solid;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.342);
+  font-size: 1.1em;
+  height: auto;
+  margin: 0.3%;
+  text-align: center;
+  width: 10%;
+  word-wrap: break-word;
+}
+
+img {
+  background-image: linear-gradient(315deg, #5ba7b15d 15%, #aab9cf9a 74%);
+  height: 75px;
+  margin-top: 1%;
+  padding: 2%;
+  width: 75px;
+}
+
+.form {
+  background-color: #51f5f58f;
+  background-image: linear-gradient(315deg, #0cbaba63 0%, #865ab852 74%);
+  border: 1px solid;
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.342);
+  display: flex;
+  flex-direction: column;
+  margin: 1% auto;
+  text-align: center;
+  width: 50%;
+}
+
+.form-button {
+  margin-top: 1%;
+}

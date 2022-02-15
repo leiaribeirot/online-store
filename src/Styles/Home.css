@@ -1,12 +1,12 @@
 .body {
-  background-image: linear-gradient(315deg, #0cbaba6c 0%, #38003644 74%);
-  padding-left: 1%;
-  padding-top: 2%;
+  background-color: #51f5f58f;
+  background-image: linear-gradient(315deg, #0cbaba63 0%, #865ab852 74%);
 }
 
 .search {
   display: flex;
   justify-content: center;
+  margin-top: 1%;
 }
 
 .searchLabel > span {

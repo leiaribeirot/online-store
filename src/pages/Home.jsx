@@ -21,41 +21,39 @@ class Home extends Component {
     } = this.props;
 
     return (
-      <main>
+      <div className="body">
         <Header />
-        <section className="body">
-          <div className="search">
-            <Input
-              classInput="searchInput"
-              classLabel="searchLabel"
-              type="text"
-              labelId="home-initial-message"
-              inputId="query-input"
-              labelText="Digite algum termo de pesquisa ou escolha uma categoria."
-              value={ searchInput }
-              name="searchInput"
-              onChange={ handleChange }
-              onKeyDown={ handleOnKeyDown }
-            />
-            <button
-              className="searchButton"
-              type="button"
-              data-testid="query-button"
-              onClick={ handleClick }
-            >
-              Pesquisar
-            </button>
-          </div>
-          <div className="allProducts">
-            <section className="sideBar">
-              <CategoriesSidebar { ...this.props } />
-            </section>
-            <section className="productsList">
-              <CardList { ...this.props } onAddProduct={ handleAddProduct } />
-            </section>
-          </div>
-        </section>
-      </main>
+        <div className="search">
+          <Input
+            classInput="searchInput"
+            classLabel="searchLabel"
+            type="text"
+            labelId="home-initial-message"
+            inputId="query-input"
+            labelText="Digite algum termo de pesquisa ou escolha uma categoria."
+            value={ searchInput }
+            name="searchInput"
+            onChange={ handleChange }
+            onKeyDown={ handleOnKeyDown }
+          />
+          <button
+            className="searchButton"
+            type="button"
+            data-testid="query-button"
+            onClick={ handleClick }
+          >
+            Pesquisar
+          </button>
+        </div>
+        <div className="allProducts">
+          <section className="sideBar">
+            <CategoriesSidebar { ...this.props } />
+          </section>
+          <section className="productsList">
+            <CardList { ...this.props } onAddProduct={ handleAddProduct } />
+          </section>
+        </div>
+      </div>
     );
   }
 }
