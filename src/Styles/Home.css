@@ -5,8 +5,8 @@
 
 .search {
   display: flex;
-  margin-top: 1%;
   justify-content: center;
+  margin-top: 1%;
 }
 
 .searchLabel > span {
