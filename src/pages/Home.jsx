@@ -11,17 +11,6 @@ import '../Styles/allProducts.css';
 import '../Styles/Home.css';
 
 class Home extends Component {
-  getCartQuantity() {
-    const { cartItems } = this.props;
-
-    let sum = 0;
-    cartItems.forEach((element) => {
-      sum += element.cartQuantity;
-    });
-
-    return sum;
-  }
-
   render() {
     const {
       searchInput,
@@ -33,7 +22,7 @@ class Home extends Component {
 
     return (
       <main>
-        <Header cartNumberOfItems={ this.getCartQuantity() } />
+        <Header />
         <section className="body">
           <div className="search">
             <Input
