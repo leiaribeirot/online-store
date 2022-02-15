@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import FinishingForm from '../components/FinishingForm';
 import PurchaseItem from '../components/PurchaseItem';
 import Header from '../components/Header';
+import '../Styles/FinishingProduct.css';
 // FIZ O ESQUELETO - FALTA CONECTAR COM AS OUTRAS PARTES DA PÁGINA
 class FinishingProduct extends React.Component {
     state = {
@@ -53,30 +54,34 @@ class FinishingProduct extends React.Component {
     const { totalPrice } = this.state;
     const { name, email, cpf, phone, postalCode, address, purchaseFinished } = this.state;
     return (
-      <div>
+      <div className="body">
         <Header />
         {purchaseFinished && <Redirect to="/" /> }
         <div>
-          {cartItems.map((item) => (
-            <PurchaseItem
-              key={ item.id }
-              title={ item.title }
-              price={ item.totalPrice }
-              amount={ item.cartQuantity }
-              thumbnail={ item.thumbnail }
+          <div className="item-container">
+            {cartItems.map((item) => (
+              <PurchaseItem
+                key={ item.id }
+                title={ item.title }
+                price={ (item.totalPrice).toFixed(2) }
+                amount={ item.cartQuantity }
+                thumbnail={ item.thumbnail }
+              />
+            ))}
+          </div>
+          <section className="form">
+            <p>{`Total a pagar: ${(totalPrice).toFixed(2)}`}</p>
+            <FinishingForm
+              name={ name }
+              email={ email }
+              cpf={ cpf }
+              phone={ phone }
+              postalCode={ postalCode }
+              address={ address }
+              onClick={ this.handleClick }
+              onChange={ this.handleChange }
             />
-          ))}
-          <p>{`Total a pagar: ${totalPrice}`}</p>
-          <FinishingForm
-            name={ name }
-            email={ email }
-            cpf={ cpf }
-            phone={ phone }
-            postalCode={ postalCode }
-            address={ address }
-            onClick={ this.handleClick }
-            onChange={ this.handleChange }
-          />
+          </section>
         </div>
       </div>
     );

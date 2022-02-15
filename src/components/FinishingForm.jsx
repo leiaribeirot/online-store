@@ -17,7 +17,7 @@ class FinishingForm extends React.Component {
       <div>
         <form>
           <label htmlFor="name">
-            Nome Completo:
+            <p>Nome Completo:</p>
             <input
               required
               name="name"
@@ -28,7 +28,7 @@ class FinishingForm extends React.Component {
             />
           </label>
           <label htmlFor="email">
-            E-mail:
+            <p>E-mail:</p>
             <input
               required
               name="email"
@@ -39,7 +39,7 @@ class FinishingForm extends React.Component {
             />
           </label>
           <label htmlFor="cpf">
-            CPF:
+            <p>CPF:</p>
             <input
               required
               name="cpf"
@@ -51,7 +51,7 @@ class FinishingForm extends React.Component {
             />
           </label>
           <label htmlFor="phone">
-            Telefone:
+            <p>Telefone:</p>
             <input
               required
               name="phone"
@@ -62,7 +62,7 @@ class FinishingForm extends React.Component {
             />
           </label>
           <label htmlFor="postalCode">
-            CEP:
+            <p>CEP:</p>
             <input
               required
               name="postalCode"
@@ -73,7 +73,7 @@ class FinishingForm extends React.Component {
             />
           </label>
           <label htmlFor="address">
-            Endereço:
+            <p>Endereço:</p>
             <input
               required
               name="address"
@@ -83,7 +83,9 @@ class FinishingForm extends React.Component {
               value={ address }
             />
           </label>
+          <br />
           <button
+            className="form-button"
             type="submit"
             onClick={ onClick }
           >

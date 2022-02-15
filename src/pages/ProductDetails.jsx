@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import { fetchItem } from '../services/api';
 import Header from '../components/Header';
 import EvaluatingForm from '../components/EvaluatingForm';
+import '../Styles/ProductDetails.css';
 
 class ProductDetails extends Component {
   componentDidMount = async () => {
@@ -17,23 +18,30 @@ class ProductDetails extends Component {
     const { title, thumbnail, price, attributes } = currentProductDetailed;
 
     return (
-      <div>
+      <div className="body">
         <Header />
-        <h1 data-testid="product-detail-name">
-          {title}
-        </h1>
-        <img src={ thumbnail } alt={ `Imagem do produto ${title}` } />
-        <p>{`R$ ${price.toLocaleString('pt-br')}` }</p>
-        <button
-          type="button"
-          data-testid="product-detail-add-to-cart"
-          onClick={ () => handleAddProduct(currentProductDetailed) }
-        >
-          Adicionar ao carrinho
-        </button>
-        <EvaluatingForm { ...this.props } />
-        <p>Especificações Técnicas</p>
-        <div>
+        <section className="details">
+          <h1 data-testid="product-detail-name">
+            {title}
+          </h1>
+          <img src={ thumbnail } alt={ `Imagem do produto ${title}` } />
+          <p>
+            Preço:
+            {`R$ ${price.toLocaleString('pt-br')}` }
+          </p>
+          <button
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => handleAddProduct(currentProductDetailed) }
+          >
+            Adicionar ao carrinho
+          </button>
+        </section>
+        <div className="evaluation">
+          <EvaluatingForm { ...this.props } />
+        </div>
+        <h2>Especificações Técnicas</h2>
+        <div className="specifications">
           {attributes.map(({ name: attName, id, value_name: valueName }) => (
             <p
               key={ id }

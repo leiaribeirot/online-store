@@ -48,7 +48,6 @@ export default class CardCarrinho extends Component {
   render() {
     const { cartItems } = this.props;
     return (
-
       <div className="cart-body">
         <Header cartNumberOfItems={ this.getCartQuantity() } />
         <div className="cart">
@@ -61,7 +60,7 @@ export default class CardCarrinho extends Component {
                   <p data-testid="shopping-cart-product-quantity">
                     {`Quantidade: ${item.cartQuantity}`}
                   </p>
-                  <p>{`Total: R$ ${item.totalPrice}`}</p>
+                  <p>{`Total: R$ ${(item.totalPrice).toFixed(2)}`}</p>
                   <button
                     className="addButton"
                     data-testid="product-decrease-quantity"
@@ -84,15 +83,19 @@ export default class CardCarrinho extends Component {
               : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
           }
         </div>
-        <div className="cartLink">
-          <Link
-            className="link"
-            data-testid="checkout-products"
-            to="/checkout"
-          >
-            <p>Comprar</p>
-          </Link>
-        </div>
+        <section>
+          {cartItems.length > 0
+          && (
+            <div className="cartLink">
+              <Link
+                className="link"
+                data-testid="checkout-products"
+                to="/checkout"
+              >
+                <p>Comprar</p>
+              </Link>
+            </div>)}
+        </section>
       </div>
     );
   }

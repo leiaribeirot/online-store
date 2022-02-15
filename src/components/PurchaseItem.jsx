@@ -7,15 +7,21 @@ class PurchaseItem extends React.Component {
     // SE N FOR SUBSTITUIR COMO TÁ EMBAIXO
     const { amount, price, thumbnail, title } = this.props;
     return (
-      <div>
-        <img src={ thumbnail } alt={ title } width="50px" />
+      <div className="item">
+        <img src={ thumbnail } alt={ title } />
         <div>
-          Nome do Produto:
-          { title }
-          Quantidade:
-          { amount }
-          Preço:
-          { price }
+          <p>
+            <strong>Nome do Produto: </strong>
+            { title }
+          </p>
+          <p>
+            <strong>Quantidade: </strong>
+            { amount }
+          </p>
+          <p>
+            <strong>Preço: RS$ </strong>
+            { price }
+          </p>
         </div>
       </div>
     );

@@ -1,12 +1,11 @@
 .body {
   background-color: #51f5f58f;
   background-image: linear-gradient(315deg, #0cbaba63 0%, #865ab852 74%);
-  padding-left: 1%;
-  padding-top: 2%;
 }
 
 .search {
   display: flex;
+  margin-top: 1%;
   justify-content: center;
 }
 

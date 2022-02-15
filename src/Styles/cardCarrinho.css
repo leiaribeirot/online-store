@@ -16,12 +16,13 @@
   background-color: #51f5f55e;
   background-image: linear-gradient(315deg, #5ba7b13f 15%, #aab9cf9d 74%);
   border: 2px solid;
-  box-shadow: 10px 5px 5px black;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.342);
   height: auto;
   margin-top: 1%;
   padding: 0.5%;
   text-align: center;
-  width: 10%;
+  width: 13%;
+  word-wrap: break-word;
 }
 
 .addButton {
@@ -29,15 +30,16 @@
   border-radius: 10px;
   box-shadow: 1px 1px rgb(30, 141, 168);
   font-weight: 700;
+  height: auto;
   margin-right: 1%;
-  width: 10%;
+  width: 20%;
 }
 
 .cartLink {
   background-color: rgb(205, 213, 216);
   border: 2px solid rgb(161, 173, 177);
   border-radius: 5px;
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.342);
   font-size: 1.1em;
   height: auto;
   margin: 1% auto;
