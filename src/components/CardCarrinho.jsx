@@ -5,6 +5,15 @@ import Header from './Header';
 import '../Styles/cardCarrinho.css';
 
 export default class CardCarrinho extends Component {
+  getCartQuantity() {
+    const { cartItems } = this.props;
+    let sum = 0;
+    cartItems.forEach((element) => {
+      sum += element.cartQuantity;
+    });
+    return sum;
+  }
+
   addtoCartItem= (product) => {
     const { cartItems, updateAppState, isAddButtonDisabled } = this.props;
     const indexOfFoundItem = cartItems
@@ -39,6 +48,7 @@ export default class CardCarrinho extends Component {
   render() {
     const { cartItems } = this.props;
     return (
+
       <div className="cart-body">
         <Header cartNumberOfItems={ this.getCartQuantity() } />
         <div className="cart">
@@ -87,7 +97,6 @@ export default class CardCarrinho extends Component {
     );
   }
 }
-
 CardCarrinho.propTypes = {
   cartItems: PropTypes.arrayOf(PropTypes.object).isRequired,
   updateAppState: PropTypes.func.isRequired,
