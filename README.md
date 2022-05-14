@@ -1,5 +1,5 @@
 # Online Store
-Esse projeto consiste em uma versão de uma loja online, desenvolvido em grupo duas funcionalidades.
+Esse projeto consiste em uma versão de uma loja online, desenvolvido em grupo suas funcionalidades.
 
 ## Técnologias usadas
 JavaScript, React, CSS3, HTML5.
